@@ -1,0 +1,162 @@
+/* Resources Section Styles - Orange Border Cards */
+
+/* Resources Section */
+.resources-section {
+    padding: 120px 0;
+    background: var(--white);
+}
+
+.resources-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.resources-intro .section-subtitle {
+    color: var(--teal);
+    font-size: 18px;
+}
+
+/* Resource Cards Grid */
+.resources-grid {
+    display: grid;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Individual Resource Card - ORANGE LEFT BORDER */
+.resource-card {
+    background: var(--white);
+    border-left: 5px solid var(--orange);
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 5px;
+    height: 0;
+    background: var(--teal);
+    transition: height 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+.resource-card:hover::before {
+    height: 100%;
+}
+
+.resource-card h3 {
+    color: var(--orange);
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.resource-card p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* Download Guide Section */
+.download-guide {
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 60px;
+    border: 2px solid var(--odig-line);
+}
+
+.download-guide h3 {
+    font-size: 32px;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+}
+
+.download-guide p {
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 30px;
+}
+
+/* Blog Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.blog-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.blog-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-card h3 {
+    padding: 24px 24px 12px;
+    font-size: 20px;
+    color: var(--charcoal);
+}
+
+.blog-card p {
+    padding: 0 24px 24px;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .resources-section {
+        padding: 80px 0;
+    }
+
+    .resource-card {
+        padding: 24px 20px;
+    }
+
+    .download-guide {
+        padding: 40px 30px;
+    }
+
+    .download-guide h3 {
+        font-size: 24px;
+    }
+}

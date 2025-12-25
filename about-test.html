@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Orange Door Investment Group</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Variables */
+        :root {
+            --orange: #F6A86D;
+            --orange-dark: #f59a52;
+            --teal: #5F8B9B;
+            --charcoal: #333333;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--charcoal);
+            background: #f8f9fa;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--teal));
+            border-radius: 2px;
+        }
+
+        /* About Section - IMPROVED SPACING */
+        .about-section {
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            font-size: 18px;
+            line-height: 2.0;
+            /* KEY: Increased line spacing */
+            text-align: center;
+            color: #555;
+        }
+
+        /* Team Grid */
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .team-member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.6s;
+        }
+
+        .team-member:hover .team-member-image img {
+            transform: scale(1.05);
+        }
+
+        .team-member-content {
+            padding: 40px;
+        }
+
+        .team-member h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+
+        .team-member .role {
+            font-size: 16px;
+            color: var(--orange);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        /* IMPROVED: Better line spacing in bio */
+        .team-member p {
+            font-size: 15px;
+            line-height: 1.9;
+            /* KEY: Increased from 1.6 */
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .partners-title {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--teal);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.7;
+        }
+
+        .logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .partner-logo {
+            height: 60px;
+            flex: 1 1 180px;
+            max-width: 220px;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            transition: all 0.4s ease;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .partner-logo img {
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p class="about-content">We founded Orange Door Investment Group to open the door for everyday investors to
+                participate in high quality real estate projects with real impact.</p>
+
+            <div class="team">
+                <!-- Lara Chapman -->
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e7d897a54d8835f3212889.jpeg"
+                            alt="Lara Chapman">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Lara Chapman</h3>
+                        <div class="role">Co-Founder | Asset Management</div>
+                        <p>With a foundation in corporate credit and operations, Lara Chapman brings structure and
+                            accountability to every stage of the investment process. After several years in corporate
+                            credit and operations, she transitioned to entrepreneurship, building businesses in
+                            wellness, real estate, and home staging. Through these ventures, she gained firsthand
+                            experience in acquisitions, renovations, and portfolio growth across multiple markets.</p>
+                        <p>At Orange Door Investment Group, Lara oversees asset management and investor communications,
+                            ensuring each project performs as planned and that investors stay informed every step of the
+                            way. Her focus on financial precision, transparent communication, and long-term
+                            relationships reflects ODIG's investor-first values.</p>
+                    </div>
+                </div>
+
+                <!-- Ryan Chapman -->
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e4b94cbb291542c6595128.jpeg"
+                            alt="Ryan Chapman">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Ryan Chapman</h3>
+                        <div class="role">Co-Founder | Investor Relations</div>
+                        <p>Ryan Chapman brings a sharp eye for opportunity and a talent for connecting people with the
+                            right investments. His background in sales, business development, and strategic partnerships
+                            shaped his ability to analyze deals from both an investor and operator perspective.</p>
+                        <p>At Orange Door Investment Group, Ryan leads investor relations and acquisition strategy,
+                            sourcing projects, negotiating with operators, and aligning each partnership with ODIG's
+                            commitment to performance and integrity. He is known for his straightforward communication
+                            style, diligence in underwriting, and drive to make solid, profitable projects accessible to
+                            everyday investors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partners Section -->
+            <div class="partners-section">
+                <div class="partners-title">Trusted Partners & Affiliations</div>
+                <div class="logo-grid">
+                    <div class="partner-logo">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e65fa9ccd24016fde76.jpeg"
+                            alt="NAREIT">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e655fd99d77bce539de.png"
+                            alt="Real Estate Association">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e7db118040d5fae3a1ae85.jpeg"
+                            alt="Partners">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e651d56c334c7dbc633.png"
+                            alt="Investment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+/* About Section - Improved Typography & Spacing */
+
+.about-section {
+    padding: 120px 0;
+    background: var(--white);
+}
+
+/* About Content - Main paragraph */
+.about-content {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    font-size: 18px;
+    line-height: 2.0;
+    /* Increased from 1.6 to 2.0 for better readability */
+    text-align: center;
+    color: #555;
+}
+
+/* Team Grid */
+.team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 50px;
+    margin-top: 60px;
+}
+
+.team-member {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.6s;
+}
+
+.team-member:hover .team-member-image img {
+    transform: scale(1.05);
+}
+
+.team-member-content {
+    padding: 40px;
+}
+
+.team-member h3 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+    line-height: 1.3;
+}
+
+.team-member .role {
+    font-size: 16px;
+    color: var(--orange);
+    margin-bottom: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Team member bio paragraphs - IMPROVED SPACING */
+.team-member p {
+    font-size: 15px;
+    line-height: 1.9;
+    /* Increased from 1.6 to 1.9 */
+    color: #555;
+    margin-bottom: 20px;
+    /* Added space between paragraphs */
+}
+
+/* If there are multiple paragraphs in bio */
+.team-member p+p {
+    margin-top: 16px;
+}
+
+/* Partner Logos Section */
+.partners-section {
+    margin-top: 80px;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.partners-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+}
+
+.logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.partner-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    flex: 1 1 180px;
+    max-width: 220px;
+    transition: all 0.4s ease;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.partner-logo img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-content {
+        font-size: 16px;
+        line-height: 1.9;
+        margin-bottom: 60px;
+    }
+
+    .team {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .team-member-content {
+        padding: 30px;
+    }
+
+    .team-member h3 {
+        font-size: 24px;
+    }
+
+    .team-member p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+}

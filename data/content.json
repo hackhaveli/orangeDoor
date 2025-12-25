@@ -1,0 +1,259 @@
+{
+  "navbar": {
+    "logo": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e92f9f35e8696fd61d360c.png",
+    "brandText": "Orange Door Investment Group",
+    "links": [
+      {
+        "text": "About",
+        "href": "#about"
+      },
+      {
+        "text": "Focus",
+        "href": "#focus"
+      },
+      {
+        "text": "Roadmap",
+        "href": "#strategy"
+      },
+      {
+        "text": "Why Invest",
+        "href": "#benefits"
+      },
+      {
+        "text": "Resources",
+        "href": "#resources"
+      },
+      {
+        "text": "Contact",
+        "href": "#contact"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Opening Doors to Smarter Real Estate Investments",
+    "subtitle": "Multifamily and Senior Living investments that build wealth, provide stability, and make a lasting impact.",
+    "backgroundImage": "https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "buttons": [
+      {
+        "text": "Join Our Investor List ",
+        "href": "#contact",
+        "type": "primary"
+      },
+      {
+        "text": "Schedule a Call",
+        "href": "https://link.orangedoorinvestmentgroup.com/widget/booking/zWhipZrTkrBoIlzY8i8G",
+        "type": "secondary"
+      }
+    ]
+  },
+  "highlights": {
+    "items": [
+      {
+        "icon": "💰",
+        "title": "Consistent Cash Flow",
+        "description": "Passive income backed by hard assets with quarterly distributions once properties stabilize."
+      },
+      {
+        "icon": "📈",
+        "title": "Value-Add Strategy",
+        "description": "Transforming underperforming properties into thriving communities through strategic renovations."
+      },
+      {
+        "icon": "🤝",
+        "title": "Trusted Partnerships",
+        "description": "Experienced operators with an investor-first focus and proven track records."
+      }
+    ]
+  },
+  "about": {
+    "title": "About Us",
+    "content": "We founded Orange Door Investment Group to open the door for everyday investors to participate in high quality real estate projects with real impact.",
+    "team": [
+      {
+        "name": "Lara Chapman",
+        "role": "Co-Founder | Asset Management",
+        "image": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e7d897a54d8835f3212889.jpeg",
+        "bio": "With a foundation in corporate credit and operations, Lara Chapman brings structure and accountability to every stage of the investment process. After several years in corporate credit and operations, she transitioned to entrepreneurship, building businesses in wellness, real estate, and home staging. Through these ventures, she gained firsthand experience in acquisitions, renovations, and portfolio growth across multiple markets.\n\nAt Orange Door Investment Group, Lara oversees asset management and investor communications, ensuring each project performs as planned and that investors stay informed every step of the way. Her focus on financial precision, transparent communication, and long-term relationships reflects ODIG’s investor-first values."
+      },
+      {
+        "name": "Ryan Chapman",
+        "role": "Co-Founder | Investor Relations",
+        "image": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e4b94cbb291542c6595128.jpeg",
+        "bio": "Ryan Chapman brings a sharp eye for opportunity and a talent for connecting people with the right investments. His background in sales, business development, and strategic partnerships shaped his ability to analyze deals from both an investor and operator perspective.\n\nAt Orange Door Investment Group, Ryan leads investor relations and acquisition strategy, sourcing projects, negotiating with operators, and aligning each partnership with ODIG's commitment to performance and integrity. He is known for his straightforward communication style, diligence in underwriting, and drive to make solid, profitable projects accessible to everyday investors."
+      }
+    ],
+    "cta": {
+      "title": "Let's Build Something Lasting",
+      "paragraph1": "We believe real estate investing should be transparent, collaborative, and rewarding for everyone involved. Whether you are new to passive investing or already expanding your portfolio, we invite you to learn more about our projects and how we work with investors.",
+      "paragraph2": "Join our investor list or schedule a call to start the conversation about upcoming opportunities."
+    },
+    "partners": [
+      {
+        "name": "NAREIT",
+        "logo": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e65fa9ccd24016fde76.jpeg"
+      },
+      {
+        "name": "Real Estate Association",
+        "logo": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e655fd99d77bce539de.png"
+      },
+      {
+        "name": "Partners",
+        "logo": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e7db118040d5fae3a1ae85.jpeg"
+      },
+      {
+        "name": "Investment",
+        "logo": "https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e68e651d56c334c7dbc633.png"
+      }
+    ]
+  },
+  "focus": {
+    "title": "Our Focus",
+    "items": [
+      {
+        "title": "Multifamily Investments",
+        "image": "https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "description": "We target properties with below market rents, deferred maintenance, or inefficient management. We create value through renovations, operational efficiency, and resident experience improvements that drive long term growth."
+      },
+      {
+        "title": "Senior Living Communities",
+        "image": "https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "description": "We focus on Independent Living, Assisted Living, and Memory Care in high demand markets. We partner with proven operators who deliver quality care while maintaining strong financial performance."
+      },
+      {
+        "title": "Other Commercial Investments",
+        "image": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "description": "<p>While our core focus remains multifamily and senior living, ODIG also evaluates select opportunities across other commercial asset classes. Our team can underwrite and manage a variety of projects when the numbers and strategy make sense.</p><p class='focus-examples-title'><strong>Examples include:</strong></p><ul class='focus-bullet-list'><li><span class='bullet-arrow'></span> <strong>Mobile Home Parks:</strong> Affordable housing with consistent demand.</li><li><span class='bullet-arrow'></span> <strong>Self Storage Facilities:</strong> Recession resilient assets with predictable cash flow.</li><li><span class='bullet-arrow'></span> <strong>Flex Industrial Spaces:</strong> Adaptive small bay properties serving modern businesses.</li><li><span class='bullet-arrow'></span> <strong>Hospitality Conversions:</strong> Repurposing underperforming hotels into long term housing or senior care.</li></ul>"
+      }
+    ]
+  },
+  "strategy": {
+    "title": "Our 6-Step Investment Roadmap",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Acquire at a Discount",
+        "description": "Target off market or underperforming assets where value can be created through strategic improvements and better management."
+      },
+      {
+        "number": 2,
+        "title": "Create Value",
+        "description": "Renovate units, improve operations, and elevate resident experience to increase NOI and property value."
+      },
+      {
+        "number": 3,
+        "title": "Partner with Experts",
+        "description": "Work with experienced operators and property managers who have a proven record of performance and excellence."
+      },
+      {
+        "number": 4,
+        "title": "Stabilize Quickly",
+        "description": "Lease to target occupancy and lock in efficient processes and expense management."
+      },
+      {
+        "number": 5,
+        "title": "Refinance Early",
+        "description": "Return capital when the property supports new financing at favorable terms."
+      },
+      {
+        "number": 6,
+        "title": "Disciplined Exit",
+        "description": "Sell based on data, market conditions, and the business plan to maximize returns."
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Why Invest With Us",
+    "items": [
+      {
+        "title": "Preferred Returns",
+        "description": "Investors are paid first, ensuring your capital receives priority."
+      },
+      {
+        "title": "Strong IRR Targets",
+        "description": "Double digit internal rate of return targets and high equity multiples."
+      },
+      {
+        "title": "Passive Income",
+        "description": "Quarterly distributions once a property is stabilized."
+      },
+      {
+        "title": "Tax Advantages",
+        "description": "Depreciation and cost segregation benefits."
+      },
+      {
+        "title": "Risk Mitigation",
+        "description": "Conservative underwriting and proven operators."
+      },
+      {
+        "title": "Real Impact",
+        "description": "Better housing for families and dignified communities for seniors."
+      }
+    ]
+  },
+  "resources": {
+    "title": "Resources",
+    "subtitle": "Investor 101: Essential terms and articles to grow your wealth knowledge.",
+    "items": [
+      {
+        "title": "What Is a Real Estate Syndication?",
+        "description": "A real estate syndication allows multiple investors to pool resources and invest in large properties together."
+      },
+      {
+        "title": "How Preferred Returns Work",
+        "description": "Preferred returns give investors priority on returns up to a stated annual rate before profits are shared."
+      },
+      {
+        "title": "Understanding GP and LP Roles",
+        "description": "General Partners handle operations; Limited Partners contribute capital and earn passive income."
+      }
+    ],
+    "downloadGuide": {
+      "title": "Real Assets. Real Returns.",
+      "subtitle": "How Commercial Real Estate Grows and Protects Wealth",
+      "buttonText": "Download Free Guide",
+      "fileUrl": "https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
+    },
+    "blog": {
+      "title": "Latest Insights",
+      "posts": [
+        {
+          "title": "Why Senior Living is a Strong Investment",
+          "image": "https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "description": "Senior living communities meet an essential need with rising demand."
+        },
+        {
+          "title": "The Value Add Playbook",
+          "image": "https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "description": "How upgrades create wealth through smart improvements."
+        },
+        {
+          "title": "How Refinancing Returns Capital",
+          "image": "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=800",
+          "description": "Providing liquidity while investors retain ownership."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Ready to Explore Passive Real Estate Investing?",
+    "description": "Join our list for early access to opportunities, market updates, and education, or schedule a time to talk with us directly.",
+    "formUrl": "https://orangedoorinvestmentgroup.com/investor-sign-up-basic-info-1",
+    "backgroundImage": "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920"
+  },
+  "footer": {
+    "copyright": "© 2025 Orange Door Investment Group. All rights reserved.",
+    "tagline": "Opening Doors to Smarter Real Estate Investments",
+    "buttons": [
+      {
+        "text": "Join Our Investor List",
+        "href": "#contact",
+        "type": "primary"
+      },
+      {
+        "text": "Schedule a Call",
+        "href": "https://link.orangedoorinvestmentgroup.com/widget/booking/zWhipZrTkrBoIlzY8i8G",
+        "type": "secondary"
+      }
+    ]
+  }
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Orange Door Investment Group</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Variables */
+        :root {
+            --orange: #F6A86D;
+            --orange-dark: #f59a52;
+            --teal: #5F8B9B;
+            --teal-dark: #527a89;
+            --charcoal: #333333;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --odig-line: #E5E5E5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            background: #f8f9fa;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--teal));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            margin-top: 30px;
+            color: var(--teal);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(246, 168, 109, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(246, 168, 109, 0.4);
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background: var(--white);
+        }
+
+        .resources-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        /* Resource Cards Grid */
+        .resources-grid {
+            display: grid;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Individual Resource Card - ORANGE LEFT BORDER */
+        .resource-card {
+            background: var(--white);
+            border-left: 5px solid var(--orange);
+            padding: 30px 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -5px;
+            width: 5px;
+            height: 0;
+            background: var(--teal);
+            transition: height 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .resource-card:hover::before {
+            height: 100%;
+        }
+
+        .resource-card h3 {
+            color: var(--orange);
+            font-size: 20px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .resource-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* Download Guide */
+        .download-guide {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 60px;
+            border: 2px solid var(--odig-line);
+        }
+
+        .download-guide h3 {
+            font-size: 32px;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .download-guide p {
+            font-size: 18px;
+            color: var(--teal);
+            margin-bottom: 30px;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-card h3 {
+            padding: 24px 24px 12px;
+            font-size: 20px;
+            color: var(--charcoal);
+        }
+
+        .blog-card p {
+            padding: 0 24px 24px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .resource-card {
+                padding: 24px 20px;
+            }
+
+            .download-guide {
+                padding: 40px 30px;
+            }
+
+            .download-guide h3 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- RESOURCES SECTION -->
+    <section class="section resources-section" id="resources">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="resources-intro">
+                <h2 class="section-title">Resources</h2>
+                <p class="section-subtitle">Investor 101: Essential terms and articles to grow your wealth knowledge.
+                </p>
+            </div>
+
+            <!-- Resource Cards with Orange Left Border -->
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>What is a Real Estate Syndication?</h3>
+                    <p>A real estate syndication allows multiple investors to pool resources and invest in large
+                        properties together. The General Partner manages acquisition and operations, while Limited
+                        Partners provide capital and receive distributions. This model gives passive investors access to
+                        institutional quality assets without day to day management.</p>
+                </div>
+
+                <div class="resource-card">
+                    <h3>How Preferred Returns Work</h3>
+                    <p>Preferred returns give investors priority on returns up to a stated annual rate before profits
+                        are shared with the sponsor. For example, with an 8% pref, investors receive 8% on invested
+                        capital before the GP participates in profits. This aligns interests and protects limited
+                        partners.</p>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Understanding GP and LP Roles</h3>
+                    <p>General Partners handle operations while Limited Partners contribute capital and earn passive
+                        income. GPs source deals, secure financing, manage renovations, oversee property operations, and
+                        make strategic decisions. LPs benefit from the GP's expertise and receive quarterly
+                        distributions while maintaining a passive role.</p>
+                </div>
+            </div>
+
+            <!-- Download Guide -->
+            <div class="download-guide">
+                <h3>Real Assets. Real Returns.</h3>
+                <p>How Commercial Real Estate Grows and Protects Wealth</p>
+                <a href="https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
+                    class="btn btn-primary" target="_blank">Download Free Guide</a>
+            </div>
+
+            <!-- Blog Posts Section -->
+            <h2 class="section-title" style="margin-top: 100px;">Latest Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Senior living investment">
+                    </div>
+                    <h3>Why Senior Living is a Strong Investment</h3>
+                    <p>Senior living communities meet an essential need with rising demand. Demographics, operational
+                        stability, and government support make this sector resilient.</p>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Value add renovations">
+                    </div>
+                    <h3>The Value Add Playbook</h3>
+                    <p>How upgrades create wealth through smart improvements. We target properties with deferred
+                        maintenance and below market rents to force appreciation.</p>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Refinancing strategy">
+                    </div>
+                    <h3>How Refinancing Returns Capital</h3>
+                    <p>Providing liquidity while investors retain ownership. Once value is created and stabilized, we
+                        refinance to return invested capital early.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

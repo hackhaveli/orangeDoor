@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Orange Door Investment Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="logo-circle">🚪</div>
+                <h1>Orange Door Admin</h1>
+                <p>Content Management System</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-login">
+                    <span>Sign In</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L12 6M16 10L12 14" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+            <div class="login-footer">
+                <p>Default credentials: admin / admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚪</span>
+                    <span class="logo-text">ODIG Admin</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="navbar">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 4H17M3 10H17M3 16H17" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Navbar</span>
+                </a>
+                <a href="#" class="nav-item" data-section="hero">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 3L2 7L10 11L18 7L10 3Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2 13L10 17L18 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span>Hero Section</span>
+                </a>
+                <a href="#" class="nav-item" data-section="highlights">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L12.5 7.5L18 8L14 12.5L15 18L10 15L5 18L6 12.5L2 8L7.5 7.5L10 2Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Highlights</span>
+                </a>
+                <a href="#" class="nav-item" data-section="about">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M17 18V16C17 14.3431 15.6569 13 14 13H6C4.34315 13 3 14.3431 3 16V18"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>About</span>
+                </a>
+                <a href="#" class="nav-item" data-section="focus">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path
+                            d="M10 2C14.4183 2 18 5.58172 18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2Z"
+                            stroke="currentColor" stroke-width="2" />
+                        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>Focus</span>
+                </a>
+                <a href="#" class="nav-item" data-section="strategy">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 10H7L10 3L13 17L16 10H20" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Strategy</span>
+                </a>
+                <a href="#" class="nav-item" data-section="benefits">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>Benefits</span>
+                </a>
+                <a href="#" class="nav-item" data-section="resources">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 6H6M4 10H6M4 14H6M8 6H16M8 10H16M8 14H16" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Resources</span>
+                </a>
+                <a href="blog.html" class="nav-item"
+                    style="background: rgba(95, 139, 155, 0.1); border-left: 3px solid var(--teal);">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 4H16V16H4V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M4 8H16" stroke="currentColor" stroke-width="2" />
+                        <path d="M7 12H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M7 14H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>📝 Blog Manager</span>
+                </a>
+                <a href="#" class="nav-item" data-section="contact">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 5L10 10L17 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>Contact</span>
+                </a>
+                <a href="#" class="nav-item" data-section="footer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="14" width="16" height="4" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span>Footer</span>
+                </a>
+
+                <!-- Settings Link -->
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-color);">
+                    <a href="settings.html" class="nav-item"
+                        style="background: rgba(246, 168, 109, 0.1); border-left: 3px solid var(--orange);">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+                                stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M16.5 10C16.5 10.3 16.45 10.59 16.37 10.86L18.1 12.2C18.24 12.31 18.28 12.5 18.19 12.65L16.54 15.35C16.45 15.5 16.26 15.56 16.1 15.5L14.08 14.72C13.69 15.02 13.27 15.26 12.82 15.45L12.5 17.62C12.47 17.79 12.32 17.92 12.15 17.92H8.85C8.68 17.92 8.53 17.79 8.5 17.62L8.18 15.45C7.73 15.26 7.31 15.02 6.92 14.72L4.9 15.5C4.74 15.56 4.55 15.5 4.46 15.35L2.81 12.65C2.72 12.5 2.76 12.31 2.9 12.2L4.63 10.86C4.55 10.59 4.5 10.3 4.5 10C4.5 9.7 4.55 9.41 4.63 9.14L2.9 7.8C2.76 7.69 2.72 7.5 2.81 7.35L4.46 4.65C4.55 4.5 4.74 4.44 4.9 4.5L6.92 5.28C7.31 4.98 7.73 4.74 8.18 4.55L8.5 2.38C8.53 2.21 8.68 2.08 8.85 2.08H12.15C12.32 2.08 12.47 2.21 12.5 2.38L12.82 4.55C13.27 4.74 13.69 4.98 14.08 5.28L16.1 4.5C16.26 4.44 16.45 4.5 16.54 4.65L18.19 7.35C18.28 7.5 18.24 7.69 18.1 7.8L16.37 9.14C16.45 9.41 16.5 9.7 16.5 10Z"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>⚙️ Settings</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-logout">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 16L18 10L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M18 10H6M10 16V18C10 19.1046 9.10457 20 8 20H4C2.89543 20 2 19.1046 2 18V2C2 0.89543 2.89543 0 4 0H8C9.10457 0 10 0.89543 10 2V4"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="sectionTitle">Navbar Settings</h1>
+                <div class="header-actions">
+                    <button id="saveBtn" class="btn-save" disabled>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M15 2H5C3.89543 2 3 2.89543 3 4V16C3 17.1046 3.89543 18 5 18H15C16.1046 18 17 17.1046 17 16V4C17 2.89543 16.1046 2 15 2Z"
+                                stroke="currentColor" stroke-width="2" />
+                            <path d="M7 2V6H13V2" stroke="currentColor" stroke-width="2" />
+                            <path d="M7 14H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        Save Changes
+                    </button>
+                    <button id="previewBtn" class="btn-preview">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                            <path d="M2 10C2 10 5 4 10 4C15 4 18 10 18 10C18 10 15 16 10 16C5 16 2 10 2 10Z"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        Preview
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body" id="contentBody">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+
+            <!-- Success Toast -->
+            <div id="successToast" class="toast success">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2" />
+                    <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Changes saved successfully!</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+
+</html>

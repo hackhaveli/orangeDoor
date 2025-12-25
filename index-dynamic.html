@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Orange Door Investment Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1d2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(246, 168, 109, 0.2);
+            border-top-color: #F6A86D;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #content.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Dynamic Content Container -->
+    <div id="content"></div>
+
+    <!-- Load the original stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // API Base URL
+        const API_URL = 'http://localhost:5000/api';
+
+        // Fetch all content from API
+        async function loadContent() {
+            try {
+                const response = await fetch(`${API_URL}/content`);
+                const data = await response.json();
+
+                // Render all sections
+                renderWebsite(data);
+
+                // Hide loading screen
+                document.getElementById('loadingScreen').classList.add('hidden');
+                document.getElementById('content').classList.add('loaded');
+
+                // Initialize scripts after content is loaded
+                setTimeout(initializeScripts, 100);
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.getElementById('loadingScreen').innerHTML = '<div style="color: white; text-align: center;"><h2>Error Loading Content</h2><p>Please make sure the server is running on port 5000</p></div>';
+            }
+        }
+
+        // Render the complete website
+        function renderWebsite(data) {
+            const contentDiv = document.getElementById('content');
+
+            contentDiv.innerHTML = `
+                ${renderNavbar(data.navbar || {})}
+                ${renderHero(data.hero || {})}
+                ${renderHighlights(data.highlights || {})}
+                ${renderAbout(data.about || {})}
+                ${renderFocus(data.focus || {})}
+                ${renderStrategy(data.strategy || {})}
+                ${renderBenefits(data.benefits || {})}
+                ${renderResources(data.resources || {})}
+                ${renderContact(data.contact || {})}
+                ${renderFooter(data.footer || {})}
+            `;
+        }
+
+        // Render functions for each section
+        function renderNavbar(data) {
+            const links = (data.links || []).map(link =>
+                `<a href="${link.href}">${link.text}</a>`
+            ).join('');
+
+            return `
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="nav-brand">
+                            <img src="${data.logo || ''}" alt="Logo" class="logo">
+                            <span class="brand-text">${data.brandText || 'Orange Door Investment Group'}</span>
+                        </div>
+                        <div class="nav-links">
+                            ${links}
+                        </div>
+                        <div class="nav-toggle" id="navToggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </nav>
+            `;
+        }
+
+        function renderHero(data) {
+            const buttons = (data.buttons || []).map(btn =>
+                `<a href="${btn.href}" class="btn ${btn.type === 'primary' ? 'btn-primary' : 'btn-secondary'}">${btn.text}</a>`
+            ).join('');
+
+            return `
+                <section class="hero" style="background-image: url('${data.backgroundImage || ''}')">
+                    <canvas id="particles"></canvas>
+                    <div class="container">
+                        <div class="hero-content">
+                            <h1 class="hero-title">${data.title || ''}</h1>
+                            <p class="hero-subtitle">${data.subtitle || ''}</p>
+                            <div class="hero-buttons">
+                                ${buttons}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderHighlights(data) {
+            const items = (data.items || []).map(item => `
+                <div class="highlight-card">
+                    <div class="highlight-icon">${item.icon}</div>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+
+            return `
+                <section class="highlights">
+                    <div class="container">
+                        <div class="highlights-grid">
+                            ${items}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderAbout(data) {
+            const team = (data.team || []).map(member => `
+                <div class="team-member">
+                    <img src="${member.image}" alt="${member.name}">
+                    <h3>${member.name}</h3>
+                    <p class="role">${member.role}</p>
+                    <p class="bio">${member.bio}</p>
+                </div>
+            `).join('');
+
+            const partners = (data.partners || []).map(partner => `
+                <div class="partner-logo">
+                    <img src="${partner.logo}" alt="${partner.name}">
+                </div>
+            `).join('');
+
+            return `
+                <section id="about" class="about">
+                    <div class="container">
+                        <h2 class="section-title">${data.title || 'About Us'}</h2>
+                        <p class="section-intro">${data.content || ''}</p>
+                        <div class="team-grid">
+                            ${team}
+                        </div>
+                        <div class="partners">
+                            <h3>Trusted Partners & Affiliations</h3>
+                            <div class="partner-logos">
+                                ${partners}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderFocus(data) {
+            const items = (data.items || []).map(item => `
+                <div class="focus-card">
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="focus-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section id="focus" class="focus">
+                    <div class="container">
+                        <h2 class="section-title">${data.title || 'Our Focus'}</h2>
+                        <div class="focus-grid">
+                            ${items}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderStrategy(data) {
+            const steps = (data.steps || []).map(step => `
+                <div class="roadmap-step">
+                    <div class="step-number">${step.number}</div>
+                    <h3>${step.title}</h3>
+                    <p>${step.description}</p>
+                </div>
+            `).join('');
+
+            return `
+                <section id="strategy" class="strategy">
+                    <div class="container">
+                        <h2 class="section-title">${data.title || 'Our Investment Roadmap'}</h2>
+                        <div class="roadmap">
+                            ${steps}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderBenefits(data) {
+            const items = (data.items || []).map(item => `
+                <div class="benefit-card">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+
+            return `
+                <section id="benefits" class="benefits">
+                    <div class="container">
+                        <h2 class="section-title">${data.title || 'Why Invest With Us'}</h2>
+                        <div class="benefits-grid">
+                            ${items}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderResources(data) {
+            const items = (data.items || []).map(item => `
+                <div class="resource-card">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+
+            const blogPosts = (data.blog?.posts || []).map(post => `
+                <div class="blog-card">
+                    <img src="${post.image}" alt="${post.title}">
+                    <h3>${post.title}</h3>
+                    <p>${post.description}</p>
+                </div>
+            `).join('');
+
+            return `
+                <section id="resources" class="resources">
+                    <div class="container">
+                        <h2 class="section-title">${data.title || 'Resources'}</h2>
+                        <p class="section-subtitle">${data.subtitle || ''}</p>
+                        <div class="resources-grid">
+                            ${items}
+                        </div>
+                        
+                        <div class="download-guide">
+                            <h3>${data.downloadGuide?.title || 'Real Assets. Real Returns.'}</h3>
+                            <p>${data.downloadGuide?.subtitle || ''}</p>
+                            <a href="${data.downloadGuide?.fileUrl || '#'}" class="btn btn-primary" id="downloadGuide">${data.downloadGuide?.buttonText || 'Download Free Guide'}</a>
+                        </div>
+
+                        <h2 class="section-title" style="margin-top: 100px;">${data.blog?.title || 'Latest Insights'}</h2>
+                        <div class="blog-grid">
+                            ${blogPosts}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderContact(data) {
+            return `
+                <section id="contact" class="contact" style="background-image: url('${data.backgroundImage || ''}')">
+                    <div class="container">
+                        <div class="contact-content">
+                            <h2>${data.title || 'Ready to Explore Passive Real Estate Investing?'}</h2>
+                            <p>${data.description || ''}</p>
+                            <div class="contact-form-container">
+                                <iframe src="${data.formUrl || ''}" 
+                                        width="100%" 
+                                        height="600" 
+                                        frameborder="0" 
+                                        scrolling="auto"
+                                        style="border-radius: 16px; background: white;">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderFooter(data) {
+            const buttons = (data.buttons || []).map(btn =>
+                `<a href="${btn.href}" class="btn ${btn.type === 'primary' ? 'btn-primary' : 'btn-secondary'}">${btn.text}</a>`
+            ).join('');
+
+            return `
+                <footer class="footer">
+                    <div class="container">
+                        <div class="footer-content">
+                            <div class="footer-text">
+                                <p class="footer-tagline">${data.tagline || ''}</p>
+                                <p class="footer-copyright">${data.copyright || ''}</p>
+                            </div>
+                            <div class="footer-cta">
+                                ${buttons}
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            `;
+        }
+
+        function initializeScripts() {
+            // Mobile menu toggle
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && document.querySelector(href)) {
+                        e.preventDefault();
+                        document.querySelector(href).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        if (navLinks) navLinks.classList.remove('active');
+                        if (navToggle) navToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Particles animation (simplified)
+            const canvas = document.getElementById('particles');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const particles = [];
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 2 + 1
+                    });
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'rgba(246, 168, 109, 0.5)';
+
+                    particles.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            }
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.highlight-card, .team-member, .focus-card, .roadmap-step, .benefit-card, .resource-card, .blog-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Load content when page loads
+        window.addEventListener('DOMContentLoaded', loadContent);
+
+        // Reload content every 30 seconds to catch updates
+        setInterval(loadContent, 30000);
+    </script>
+</body>
+
+</html>

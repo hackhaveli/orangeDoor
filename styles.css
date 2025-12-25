@@ -1,0 +1,482 @@
+/* ==========================================
+   ORANGE DOOR INVESTMENT GROUP - COMPLETE STYLES
+   All styling in one file for index.html
+   ========================================== */
+
+/* --- 1. GLOBAL VARIABLES & RESET --- */
+:root {
+    --orange: #F6A86D;
+    --orange-dark: #f59a52;
+    --teal: #5F8B9B;
+    --teal-dark: #527a89;
+    --charcoal: #333333;
+    --light-gray: #F5F5F5;
+    --white: #FFFFFF;
+    --odig-bg: #fff;
+    --odig-line: #E5E5E5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--charcoal);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    background-color: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- 2. SECTION UTILITIES --- */
+.section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.section-gray {
+    background-color: var(--light-gray);
+}
+
+.section-light {
+    background-color: var(--white);
+}
+
+.section-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--charcoal);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--teal));
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 30px;
+    color: var(--teal);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- 3. BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 16px 36px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    color: var(--white);
+    box-shadow: 0 10px 30px rgba(246, 168, 109, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(246, 168, 109, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--charcoal);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* --- 4. ABOUT SECTION - IMPROVED LINE SPACING --- */
+.about-section {
+    background: var(--white);
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    font-size: 18px;
+    line-height: 2.0;
+    /* IMPROVED: Better readability */
+    text-align: center;
+    color: #555;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 50px;
+    margin-top: 60px;
+}
+
+.team-member {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.6s;
+}
+
+.team-member:hover .team-member-image img {
+    transform: scale(1.05);
+}
+
+.team-member-content {
+    padding: 40px;
+}
+
+.team-member h3 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+}
+
+.team-member .role {
+    font-size: 16px;
+    color: var(--orange);
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.team-member p {
+    font-size: 15px;
+    line-height: 2.2;
+    /* PRODUCTION EXACT: Very generous line spacing */
+    color: #555;
+    margin-bottom: 24px;
+    /* PRODUCTION EXACT: More space between paragraphs */
+}
+
+/* Partner Logos */
+.partners-section {
+    margin-top: 80px;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.partners-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+}
+
+.logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.partner-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    flex: 1 1 180px;
+    max-width: 220px;
+    transition: all 0.4s ease;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.partner-logo img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* --- 5. RESOURCES SECTION - ORANGE BORDER CARDS --- */
+.resources-section {
+    background: var(--white);
+}
+
+.resources-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.resources-grid {
+    display: grid;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Orange Left Border Cards */
+.resource-card {
+    background: var(--white);
+    border-left: 5px solid var(--orange);
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 5px;
+    height: 0;
+    background: var(--teal);
+    transition: height 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+.resource-card:hover::before {
+    height: 100%;
+}
+
+.resource-card h3 {
+    color: var(--orange);
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.resource-card p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* Download Guide */
+.download-guide {
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 60px;
+    border: 2px solid var(--odig-line);
+}
+
+.download-guide h3 {
+    font-size: 32px;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+}
+
+.download-guide p {
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 30px;
+}
+
+/* Blog Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.blog-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.blog-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-card h3 {
+    padding: 24px 24px 12px;
+    font-size: 20px;
+    color: var(--charcoal);
+}
+
+.blog-card p {
+    padding: 0 24px 24px;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* --- 6. RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+    }
+
+    .about-content {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+
+    .team {
+        grid-template-columns: 1fr;
+    }
+
+    .team-member-content {
+        padding: 30px;
+    }
+
+    .resource-card {
+        padding: 24px 20px;
+    }
+
+    .download-guide {
+        padding: 40px 30px;
+    }
+
+    .download-guide h3 {
+        font-size: 24px;
+    }
+}

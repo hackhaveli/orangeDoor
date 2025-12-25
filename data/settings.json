@@ -1,0 +1,58 @@
+{
+  "version": "2.0",
+  "sectionOrder": [
+    "navbar",
+    "hero",
+    "highlights",
+    "about",
+    "focus",
+    "strategy",
+    "benefits",
+    "resources",
+    "contact",
+    "footer"
+  ],
+  "sectionSpacing": {
+    "navbar": "0px",
+    "hero": "0px",
+    "highlights": "80px",
+    "about": "100px",
+    "focus": "100px",
+    "strategy": "100px",
+    "benefits": "100px",
+    "resources": "100px",
+    "contact": "100px",
+    "footer": "0px"
+  },
+  "sectionVisibility": {
+    "navbar": true,
+    "hero": true,
+    "highlights": true,
+    "about": true,
+    "focus": true,
+    "strategy": true,
+    "benefits": true,
+    "resources": true,
+    "contact": true,
+    "footer": true
+  },
+  "colors": {
+    "primary": "#F6A86D",
+    "primaryDark": "#f59a52",
+    "secondary": "#5F8B9B",
+    "secondaryDark": "#527a89",
+    "charcoal": "#333333",
+    "lightGray": "#F5F5F5",
+    "white": "#FFFFFF"
+  },
+  "typography": {
+    "headingFont": "Montserrat",
+    "bodyFont": "Open Sans",
+    "h1Size": "64px",
+    "h2Size": "48px",
+    "h3Size": "28px",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "customCSS": ""
+}
