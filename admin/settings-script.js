@@ -1,5 +1,5 @@
 // Settings Management Script
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 let settings = {};
 let hasChanges = false;
 
