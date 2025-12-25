@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: orangedoor
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        value: orangedoor_secret_key_2025
+      - key: NODE_ENV
+        value: production

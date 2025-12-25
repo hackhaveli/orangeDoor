@@ -164,7 +164,7 @@ const initializeAdmin = async () => {
         const adminExists = admins.find(a => a.username === 'admin');
 
         if (!adminExists) {
-            const hashedPassword = await bcrypt.hash('admin123', 10);
+            const hashedPassword = await bcrypt.hash('larachapman2024', 10);
             admins.push({
                 id: '1',
                 username: 'admin',
@@ -172,7 +172,7 @@ const initializeAdmin = async () => {
                 createdAt: new Date().toISOString()
             });
             await writeJSON(ADMIN_FILE, admins);
-            console.log('✅ Default admin created - Username: admin, Password: admin123');
+            console.log('✅ Default admin created - Username: admin, Password: larachapman2024');
         }
     } catch (err) {
         console.error('Error initializing admin:', err);
