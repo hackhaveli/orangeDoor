@@ -16,6 +16,39 @@ const contentBody = document.getElementById('contentBody');
 const sectionTitle = document.getElementById('sectionTitle');
 const successToast = document.getElementById('successToast');
 const navItems = document.querySelectorAll('.nav-item');
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebar = document.querySelector('.sidebar');
+
+// Mobile Menu Toggle Functions
+function openMobileMenu() {
+    sidebar.classList.add('open');
+    sidebarOverlay.classList.add('show');
+    mobileMenuToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('show');
+    mobileMenuToggle.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Mobile Menu Event Listeners
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        if (sidebar.classList.contains('open')) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    });
+}
+
+if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeMobileMenu);
+}
 
 // Check if already logged in
 const token = localStorage.getItem('adminToken');
@@ -65,6 +98,7 @@ navItems.forEach(item => {
 
         // Only handle section navigation, not external links
         if (!section) {
+            closeMobileMenu(); // Close menu when clicking external links on mobile
             return; // Allow normal link behavior for non-section links
         }
 
@@ -73,6 +107,7 @@ navItems.forEach(item => {
             return;
         }
         switchSection(section);
+        closeMobileMenu(); // Close mobile menu after switching section
     });
 });
 
