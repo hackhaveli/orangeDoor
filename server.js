@@ -427,10 +427,16 @@ app.get('/api/blog', async (req, res) => {
     }
 });
 
-app.get('/api/blog/:slug', async (req, res) => {
+app.get('/api/blog/:slugOrId', async (req, res) => {
     try {
         const blog = await readJSON(BLOG_FILE, { posts: [] });
-        const post = blog.posts.find(p => p.slug === req.params.slug);
+        const slugOrId = req.params.slugOrId;
+
+        // Search by slug first, then by id as fallback
+        let post = blog.posts.find(p => p.slug === slugOrId);
+        if (!post) {
+            post = blog.posts.find(p => p.id === slugOrId);
+        }
 
         if (!post) {
             return res.status(404).json({ error: 'Post not found' });
