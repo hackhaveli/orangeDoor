@@ -1127,9 +1127,54 @@
             font-size: 15px;
         }
 
-        /* --- 14. MOBILE MEDIA QUERIES --- */
+        /* --- 14. MOBILE MENU - PURE CSS CHECKBOX HACK --- */
+
+        /* Hide the checkbox */
+        .menu-checkbox {
+            display: none !important;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Hide close button on desktop - always hidden by default */
+        .mobile-close-btn {
+            display: none !important;
+        }
+
         @media (max-width: 900px) {
+
+            /* Hamburger menu button */
             .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 28px;
+                color: var(--white);
+                z-index: 10001;
+                position: relative;
+                width: 44px;
+                height: 44px;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+
+            /* Show hamburger, hide X by default */
+            .menu-toggle .hamburger-icon {
+                display: block;
+            }
+
+            .menu-toggle .close-icon {
+                display: none;
+            }
+
+            /* When checkbox is checked, show X and hide hamburger */
+            .menu-checkbox:checked~.navbar .menu-toggle .hamburger-icon {
+                display: none;
+            }
+
+            .menu-checkbox:checked~.navbar .menu-toggle .close-icon {
                 display: block;
             }
 
@@ -1141,31 +1186,90 @@
                 font-size: 16px;
             }
 
+            /* Mobile Menu - Hidden by default */
             .nav-menu {
-                display: flex;
+                display: none;
                 flex-direction: column;
                 position: fixed;
                 top: 0;
+                left: 0;
                 right: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(51, 51, 51, 0.95);
-                padding: 100px 24px 20px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-                transform: translateX(100%);
-                transition: transform 0.4s ease-in-out;
+                bottom: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(51, 51, 51, 0.98);
+                padding: 100px 24px 40px;
                 align-items: center;
-                gap: 25px;
+                justify-content: flex-start;
+                gap: 8px;
+                z-index: 10000;
+                overflow-y: auto;
             }
 
-            .nav-menu.open {
-                transform: translateX(0);
+            /* Show menu when checkbox is checked - PURE CSS! */
+            .menu-checkbox:checked~.navbar .nav-menu {
+                display: flex !important;
             }
 
-            .nav-menu a {
-                font-size: 20px;
-                padding: 15px 0;
+            /* Close button - hidden by default */
+            .mobile-close-btn {
+                display: none;
+            }
+
+            /* Show close button when menu is open */
+            .menu-checkbox:checked~.mobile-close-btn {
+                position: fixed !important;
+                top: 20px !important;
+                right: 20px !important;
+                font-size: 40px;
+                color: white;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 99999 !important;
+                -webkit-tap-highlight-color: transparent;
+                background: #e74c3c;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid white;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .menu-checkbox:checked~.mobile-close-btn:active {
+                background: #c0392b;
+                transform: scale(0.95);
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+                list-style: none;
+            }
+
+            .nav-menu li label {
                 display: block;
+                width: 100%;
+                cursor: pointer;
+                padding: 5px 0;
+            }
+
+            .nav-menu li label a {
+                font-size: 22px;
+                padding: 18px 20px;
+                display: block;
+                width: 100%;
+                border-radius: 10px;
+                color: var(--white);
+                -webkit-tap-highlight-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-menu li label:active,
+            .nav-menu li label a:active {
+                background-color: rgba(246, 168, 109, 0.2);
             }
 
             /* Strategy Vertical Line */
@@ -1592,7 +1696,10 @@
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR with CSS-only mobile menu -->
+    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+    <!-- CLOSE BUTTON - Outside nav for proper rendering -->
+    <label for="menu-checkbox" class="mobile-close-btn">✕</label>
     <nav class="navbar">
         <div class="container">
             <div class="navbar-inner">
@@ -1607,18 +1714,24 @@
                 </div>
 
                 <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#focus">Focus</a></li>
-                    <li><a href="#strategy">Roadmap</a></li>
-                    <li><a href="#benefits">Why Invest</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><label for="menu-checkbox"><a href="#about">About</a></label></li>
+                    <li><label for="menu-checkbox"><a href="#focus">Focus</a></label></li>
+                    <li><label for="menu-checkbox"><a href="#strategy">Roadmap</a></label></li>
+                    <li><label for="menu-checkbox"><a href="#benefits">Why Invest</a></label></li>
+                    <li><label for="menu-checkbox"><a href="#resources">Resources</a></label></li>
+                    <li><label for="menu-checkbox"><a href="/blog.html">Blog</a></label></li>
+                    <li><label for="menu-checkbox"><a href="#contact">Contact</a></label></li>
                 </ul>
 
-                <div class="menu-toggle" id="menu-toggle">☰</div>
+                <!-- Hamburger toggle label -->
+                <label for="menu-checkbox" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-icon">☰</span>
+                    <span class="close-icon">✕</span>
+                </label>
             </div>
         </div>
     </nav>
+
 
     <!-- HERO SECTION -->
     <section class="hero" id="hero">
@@ -1947,6 +2060,11 @@
                     </div>
                 </div>
             </div>
+
+            <!-- View All Blog Button -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="/blog.html" class="btn btn-primary" style="display: inline-block;">View All Articles →</a>
+            </div>
         </div>
     </section>
 
@@ -1984,21 +2102,62 @@
 
     <!-- SCRIPTS -->
     <script>
+        // MOBILE MENU FUNCTIONS - Using display:none for maximum reliability
+        function closeMobileMenu() {
+            var navMenu = document.getElementById('nav-menu');
+            if (navMenu) {
+                navMenu.classList.remove('open');
+                navMenu.style.display = 'none';
+            }
+            console.log('Menu closed'); // Debug
+        }
+
+        function toggleMobileMenu() {
+            var navMenu = document.getElementById('nav-menu');
+            if (navMenu) {
+                var isOpen = navMenu.classList.contains('open');
+                if (isOpen) {
+                    navMenu.classList.remove('open');
+                    navMenu.style.display = 'none';
+                    console.log('Menu toggled: closed');
+                } else {
+                    navMenu.classList.add('open');
+                    navMenu.style.display = 'flex';
+                    console.log('Menu toggled: opened');
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu
+            // Mobile Menu variables (for use in other event handlers)
             const menuToggle = document.getElementById('menu-toggle');
             const navMenu = document.getElementById('nav-menu');
 
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('open');
+            // Handle smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            // Delay to allow mobile menu close animation
+                            setTimeout(() => {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 100);
+                        }
+                    }
                 });
-                navMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('open');
-                    });
-                });
-            }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (navMenu && navMenu.classList.contains('open')) {
+                    if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                        closeMobileMenu();
+                    }
+                }
+            });
 
             // Particles Logic
             function createParticles() {
@@ -2048,18 +2207,6 @@
 
             document.querySelectorAll('.highlight-card').forEach(el => observer.observe(el));
             document.querySelectorAll('.odig-step-card').forEach(el => observer.observe(el));
-
-            // Smooth Scroll Fix
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            });
 
             // Download Guide Mock Logic
             const downloadBtn = document.getElementById("downloadGuide");

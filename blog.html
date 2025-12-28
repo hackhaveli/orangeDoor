@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Orange Door Investment Group</title>
+    <meta name="description"
+        content="Explore insights on real estate investing, senior living investments, multifamily properties, and wealth building strategies from Orange Door Investment Group.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --orange: #F6A86D;
+            --orange-dark: #f59a52;
+            --teal: #5F8B9B;
+            --teal-dark: #527a89;
+            --charcoal: #333333;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-brand a:hover {
+            opacity: 0.9;
+        }
+
+        .nav-logo {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .nav-brand-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--white);
+        }
+
+        .orange-word {
+            color: var(--orange);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), var(--teal));
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--orange);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 28px;
+            color: var(--white);
+            z-index: 200;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(95, 139, 155, 0.95) 0%, rgba(51, 51, 51, 0.95) 100%),
+                url('https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
+            padding: 100px 0 80px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ========== SEARCH AND FILTER ========== */
+        .filter-section {
+            background: var(--white);
+            padding: 30px 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 90px;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            font-size: 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .search-box input:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 4px rgba(246, 168, 109, 0.15);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid var(--teal);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .filter-btn:hover {
+            background: var(--teal);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 139, 155, 0.3);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            border-color: var(--orange);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(246, 168, 109, 0.4);
+        }
+
+        /* ========== BLOG GRID ========== */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+            min-height: 60vh;
+        }
+
+        .blog-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .results-count {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .results-count span {
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .sort-select {
+            padding: 10px 40px 10px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-image .category-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .blog-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--charcoal);
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+
+        .blog-card:hover h3 {
+            color: var(--orange);
+        }
+
+        .blog-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--orange);
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+
+        .read-more {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover .read-more {
+            color: var(--orange);
+            gap: 10px;
+        }
+
+        /* ========== NO RESULTS ========== */
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .no-results-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--charcoal);
+        }
+
+        .no-results p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .no-results button {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .no-results button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(246, 168, 109, 0.4);
+        }
+
+        /* ========== LOADING STATE ========== */
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-gray);
+            border-top-color: var(--orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ========== FEATURED POST ========== */
+        .featured-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--white) 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .featured-image {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .featured-post:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-content {
+            padding: 40px;
+        }
+
+        .featured-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            color: var(--white);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .featured-content h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--charcoal);
+            line-height: 1.3;
+        }
+
+        .featured-content p {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .featured-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .featured-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(246, 168, 109, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 100%);
+            padding: 60px 0 30px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .footer-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(246, 168, 109, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            font-size: 15px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(51, 51, 51, 0.98);
+                padding: 100px 24px 20px;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                align-items: center;
+                gap: 25px;
+            }
+
+            .nav-menu.open {
+                transform: translateX(0);
+            }
+
+            .nav-menu a {
+                font-size: 22px;
+                padding: 15px 0;
+            }
+
+            .filter-section {
+                top: 70px;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .featured-post {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                height: 280px;
+            }
+
+            .featured-content {
+                padding: 30px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .blog-hero h1 {
+                font-size: 32px;
+            }
+
+            .blog-hero p {
+                font-size: 16px;
+            }
+
+            .blog-card-content {
+                padding: 24px;
+            }
+
+            .blog-card h3 {
+                font-size: 18px;
+            }
+
+            .featured-content h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-card {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .blog-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .blog-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .blog-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .blog-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .blog-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .blog-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <div class="nav-brand">
+                    <a href="/">
+                        <img src="https://assets.cdn.filesafe.space/Out59Sg1pInehCQh9Rc8/media/68e92f9f35e8696fd61d360c.png"
+                            alt="Orange Door Investment Group Logo" class="nav-logo">
+                        <span class="nav-brand-text">
+                            <span class="orange-word">Orange</span> Door Investment Group
+                        </span>
+                    </a>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/#focus">Focus</a></li>
+                    <li><a href="/#strategy">Roadmap</a></li>
+                    <li><a href="/blog.html" class="active">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+
+                <div class="menu-toggle" id="menu-toggle">☰</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Latest Insights & Articles</h1>
+            <p>Expert perspectives on real estate investing, wealth building, and market trends</p>
+        </div>
+    </section>
+
+    <!-- FEATURED POST -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="featured-post" id="featured-post">
+                <!-- Featured post will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search articles...">
+                </div>
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-category="all">All Posts</button>
+                    <button class="filter-btn" data-category="Investing">Investing</button>
+                    <button class="filter-btn" data-category="Market">Market</button>
+                    <button class="filter-btn" data-category="Strategy">Strategy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG GRID -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-stats">
+                <p class="results-count">Showing <span id="resultsCount">0</span> articles</p>
+                <select class="sort-select" id="sortSelect">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="title">Alphabetical</option>
+                </select>
+            </div>
+            <div class="blog-grid" id="blogGrid">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading articles...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-ctas">
+                <a href="/#contact" class="btn btn-primary">Join Our Investor List</a>
+                <a href="https://link.orangedoorinvestmentgroup.com/widget/booking/zWhipZrTkrBoIlzY8i8G"
+                    class="btn btn-secondary">Schedule a Call</a>
+            </div>
+            <div class="footer-content">
+                <p>&copy; 2025 Orange Door Investment Group. All rights reserved.</p>
+                <p>Opening Doors to Smarter Real Estate Investments</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = '/api';
+        let allPosts = [];
+        let filteredPosts = [];
+        let currentCategory = 'all';
+        let currentSearch = '';
+        let currentSort = 'newest';
+
+        // Mobile Menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('open');
+                    menuToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
+                });
+
+                // Close menu when clicking any link
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('open');
+                        menuToggle.textContent = '☰';
+                    });
+                });
+            }
+
+            // Load blog posts
+            loadBlogPosts();
+
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', debounce((e) => {
+                currentSearch = e.target.value.toLowerCase();
+                filterAndRenderPosts();
+            }, 300));
+
+            // Category filter
+            document.getElementById('filterButtons').addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentCategory = e.target.dataset.category;
+                    filterAndRenderPosts();
+                }
+            });
+
+            // Sort functionality
+            document.getElementById('sortSelect').addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                filterAndRenderPosts();
+            });
+        });
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch(`${API_URL}/blog`);
+                const data = await response.json();
+                allPosts = data.posts || [];
+
+                // Update categories based on actual data
+                updateCategoryButtons();
+
+                // Render featured post
+                renderFeaturedPost();
+
+                // Render all posts
+                filterAndRenderPosts();
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blogGrid').innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">⚠️</div>
+                        <h3>Unable to load articles</h3>
+                        <p>Please check your connection and try again.</p>
+                        <button onclick="loadBlogPosts()">Retry</button>
+                    </div>
+                `;
+            }
+        }
+
+        function updateCategoryButtons() {
+            const categories = [...new Set(allPosts.map(p => p.category).filter(Boolean))];
+            const filterButtons = document.getElementById('filterButtons');
+
+            let buttonsHTML = '<button class="filter-btn active" data-category="all">All Posts</button>';
+            categories.forEach(cat => {
+                buttonsHTML += `<button class="filter-btn" data-category="${cat}">${cat}</button>`;
+            });
+
+            filterButtons.innerHTML = buttonsHTML;
+        }
+
+        function filterAndRenderPosts() {
+            // Filter posts
+            filteredPosts = allPosts.filter(post => {
+                const matchesCategory = currentCategory === 'all' || post.category === currentCategory;
+                const matchesSearch = !currentSearch ||
+                    post.title.toLowerCase().includes(currentSearch) ||
+                    (post.excerpt && post.excerpt.toLowerCase().includes(currentSearch)) ||
+                    (post.author && post.author.toLowerCase().includes(currentSearch));
+                return matchesCategory && matchesSearch;
+            });
+
+            // Sort posts
+            filteredPosts.sort((a, b) => {
+                if (currentSort === 'newest') {
+                    return new Date(b.createdAt || b.updatedAt) - new Date(a.createdAt || a.updatedAt);
+                } else if (currentSort === 'oldest') {
+                    return new Date(a.createdAt || a.updatedAt) - new Date(b.createdAt || b.updatedAt);
+                } else if (currentSort === 'title') {
+                    return a.title.localeCompare(b.title);
+                }
+                return 0;
+            });
+
+            // Update results count
+            document.getElementById('resultsCount').textContent = filteredPosts.length;
+
+            // Render posts
+            renderPosts();
+        }
+
+        function renderFeaturedPost() {
+            if (allPosts.length === 0) {
+                document.querySelector('.featured-section').style.display = 'none';
+                return;
+            }
+
+            const featured = allPosts[0]; // First post as featured
+            const featuredEl = document.getElementById('featured-post');
+            const formattedDate = formatDate(featured.createdAt || featured.updatedAt);
+
+            featuredEl.innerHTML = `
+                <div class="featured-image">
+                    <img src="${featured.image || 'https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg'}" alt="${featured.title}">
+                </div>
+                <div class="featured-content">
+                    <span class="featured-label">⭐ Featured Article</span>
+                    <h2>${featured.title}</h2>
+                    <p>${truncateText(featured.excerpt || '', 200)}</p>
+                    <a href="/blog-post.html?slug=${featured.slug || featured.id}" class="featured-btn">
+                        Read Full Article →
+                    </a>
+                </div>
+            `;
+
+            featuredEl.style.cursor = 'pointer';
+            featuredEl.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('featured-btn')) {
+                    window.location.href = `/blog-post.html?slug=${featured.slug || featured.id}`;
+                }
+            });
+        }
+
+        function renderPosts() {
+            const gridEl = document.getElementById('blogGrid');
+
+            if (filteredPosts.length === 0) {
+                gridEl.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">📝</div>
+                        <h3>No articles found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                        <button onclick="clearFilters()">Clear Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            gridEl.innerHTML = filteredPosts.map(post => {
+                const formattedDate = formatDate(post.createdAt || post.updatedAt);
+                const readTime = post.readTime || '5';
+
+                return `
+                    <a href="/blog-post.html?slug=${post.slug || post.id}" class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="${post.image || 'https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg'}" alt="${post.title}">
+                            ${post.category ? `<span class="category-badge">${post.category}</span>` : ''}
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span>📅 ${formattedDate}</span>
+                                <span>⏱️ ${readTime} min read</span>
+                            </div>
+                            <h3>${post.title}</h3>
+                            <p>${truncateText(post.excerpt || '', 120)}</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="${post.authorImage || 'https://via.placeholder.com/40'}" alt="${post.author || 'Author'}" class="author-avatar">
+                                    <span class="author-name">${post.author || 'ODIG Team'}</span>
+                                </div>
+                                <span class="read-more">Read More →</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        function clearFilters() {
+            currentCategory = 'all';
+            currentSearch = '';
+            document.getElementById('searchInput').value = '';
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === 'all');
+            });
+            filterAndRenderPosts();
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function truncateText(text, maxLength) {
+            if (!text) return '';
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength).trim() + '...';
+        }
+    </script>
+</body>
+
+</html>
