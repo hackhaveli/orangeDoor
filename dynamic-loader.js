@@ -90,6 +90,21 @@ async function loadDynamicContent() {
                     const paragraphs = ctaContainer.querySelectorAll('p');
                     if (paragraphs[0]) paragraphs[0].textContent = data.about.cta.paragraph1;
                     if (paragraphs[1]) paragraphs[1].textContent = data.about.cta.paragraph2;
+
+                    // Add buttons if they exist
+                    if (data.about.cta.buttons) {
+                        // Check if buttons container exists, if not create it
+                        let buttonsContainer = ctaContainer.querySelector('.about-cta-buttons');
+                        if (!buttonsContainer) {
+                            buttonsContainer = document.createElement('div');
+                            buttonsContainer.className = 'about-cta-buttons';
+                            buttonsContainer.style.cssText = 'display: flex; gap: 16px; justify-content: center; margin-top: 30px; flex-wrap: wrap;';
+                            ctaContainer.appendChild(buttonsContainer);
+                        }
+                        buttonsContainer.innerHTML = data.about.cta.buttons.map(btn =>
+                            `<a href="${btn.href}" class="btn ${btn.type === 'primary' ? 'btn-primary' : 'btn-secondary'}">${btn.text}</a>`
+                        ).join('');
+                    }
                 }
             }
 
@@ -169,7 +184,20 @@ async function loadDynamicContent() {
                 `).join('');
             }
 
-            if (data.resources.downloadGuide) {
+            // Update downloadable guides
+            if (data.resources.downloadGuides && data.resources.downloadGuides.length > 0) {
+                const guidesContainer = document.querySelector('.download-guides-container');
+                if (guidesContainer) {
+                    guidesContainer.innerHTML = data.resources.downloadGuides.map(guide => `
+                        <div class="download-guide">
+                            <h3>${guide.title}</h3>
+                            <p>${guide.subtitle}</p>
+                            <a href="${guide.fileUrl}" class="btn btn-primary" target="_blank">${guide.buttonText}</a>
+                        </div>
+                    `).join('');
+                }
+            } else if (data.resources.downloadGuide) {
+                // Fallback for old single guide format
                 updateText('.download-guide h3', data.resources.downloadGuide.title);
                 updateText('.download-guide p', data.resources.downloadGuide.subtitle);
                 updateText('#downloadGuide', data.resources.downloadGuide.buttonText);

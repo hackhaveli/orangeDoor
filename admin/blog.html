@@ -357,6 +357,26 @@
             border-color: var(--primary);
         }
 
+        /* Color Picker */
+        .color-picker {
+            width: 40px;
+            height: 30px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            background: none;
+            padding: 2px;
+        }
+
+        .color-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-picker::-webkit-color-swatch {
+            border: none;
+            border-radius: 2px;
+        }
+
         /* Image Preview */
         .image-preview {
             width: 100%;
@@ -496,16 +516,69 @@
                     <div class="form-group">
                         <label>Content *</label>
                         <div class="editor-toolbar">
-                            <button type="button" class="editor-btn" onclick="formatText('bold')"><b>B</b></button>
-                            <button type="button" class="editor-btn" onclick="formatText('italic')"><i>I</i></button>
-                            <button type="button" class="editor-btn" onclick="formatText('underline')"><u>U</u></button>
-                            <button type="button" class="editor-btn" onclick="formatText('h2')">H2</button>
-                            <button type="button" class="editor-btn" onclick="formatText('h3')">H3</button>
-                            <button type="button" class="editor-btn" onclick="formatText('ul')">• List</button>
-                            <button type="button" class="editor-btn" onclick="formatText('ol')">1. List</button>
-                            <button type="button" class="editor-btn" onclick="formatText('quote')">Quote</button>
-                            <button type="button" class="editor-btn" onclick="formatText('link')">🔗 Link</button>
-                            <button type="button" class="editor-btn" onclick="formatText('image')">🖼️ Image</button>
+                            <button type="button" class="editor-btn" onclick="formatText('bold')"
+                                title="Bold"><b>B</b></button>
+                            <button type="button" class="editor-btn" onclick="formatText('italic')"
+                                title="Italic"><i>I</i></button>
+                            <button type="button" class="editor-btn" onclick="formatText('underline')"
+                                title="Underline"><u>U</u></button>
+                            <button type="button" class="editor-btn" onclick="formatText('strikethrough')"
+                                title="Strikethrough"><s>S</s></button>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('h1')"
+                                title="Heading 1">H1</button>
+                            <button type="button" class="editor-btn" onclick="formatText('h2')"
+                                title="Heading 2">H2</button>
+                            <button type="button" class="editor-btn" onclick="formatText('h3')"
+                                title="Heading 3">H3</button>
+                            <button type="button" class="editor-btn" onclick="formatText('h4')"
+                                title="Heading 4">H4</button>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('ul')" title="Bullet List">•
+                                List</button>
+                            <button type="button" class="editor-btn" onclick="formatText('ol')" title="Numbered List">1.
+                                List</button>
+                            <button type="button" class="editor-btn" onclick="formatText('quote')"
+                                title="Quote">Quote</button>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('left')"
+                                title="Align Left">⬅️</button>
+                            <button type="button" class="editor-btn" onclick="formatText('center')"
+                                title="Align Center">↔️</button>
+                            <button type="button" class="editor-btn" onclick="formatText('right')"
+                                title="Align Right">➡️</button>
+                            <button type="button" class="editor-btn" onclick="formatText('justify')"
+                                title="Justify">⬌</button>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <div style="display: inline-flex; align-items: center; gap: 5px;">
+                                <label for="textColor" style="font-size: 12px; margin: 0;">Text:</label>
+                                <input type="color" id="textColor" class="color-picker"
+                                    onchange="formatText('foreColor', this.value)" title="Text Color">
+                            </div>
+                            <div style="display: inline-flex; align-items: center; gap: 5px;">
+                                <label for="bgColor" style="font-size: 12px; margin: 0;">BG:</label>
+                                <input type="color" id="bgColor" class="color-picker"
+                                    onchange="formatText('backColor', this.value)" title="Background Color">
+                            </div>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('link')" title="Insert Link">🔗
+                                Link</button>
+                            <button type="button" class="editor-btn" onclick="formatText('image')"
+                                title="Insert Image">🖼️ Image</button>
+                            <button type="button" class="editor-btn" onclick="formatText('code')" title="Code">{
+                                }</button>
+                            <button type="button" class="editor-btn" onclick="formatText('removeFormat')"
+                                title="Clear Formatting">🧹</button>
                         </div>
                         <div class="content-editor" id="postContent" contenteditable="true"></div>
                     </div>
@@ -715,7 +788,7 @@
         }
 
         // Rich Text Editor Functions
-        function formatText(command) {
+        function formatText(command, value) {
             const editor = document.getElementById('postContent');
             editor.focus();
 
@@ -729,11 +802,20 @@
                 case 'underline':
                     document.execCommand('underline');
                     break;
+                case 'strikethrough':
+                    document.execCommand('strikeThrough');
+                    break;
+                case 'h1':
+                    document.execCommand('formatBlock', false, 'h1');
+                    break;
                 case 'h2':
                     document.execCommand('formatBlock', false, 'h2');
                     break;
                 case 'h3':
                     document.execCommand('formatBlock', false, 'h3');
+                    break;
+                case 'h4':
+                    document.execCommand('formatBlock', false, 'h4');
                     break;
                 case 'ul':
                     document.execCommand('insertUnorderedList');
@@ -744,6 +826,24 @@
                 case 'quote':
                     document.execCommand('formatBlock', false, 'blockquote');
                     break;
+                case 'left':
+                    document.execCommand('justifyLeft');
+                    break;
+                case 'center':
+                    document.execCommand('justifyCenter');
+                    break;
+                case 'right':
+                    document.execCommand('justifyRight');
+                    break;
+                case 'justify':
+                    document.execCommand('justifyFull');
+                    break;
+                case 'foreColor':
+                    document.execCommand('foreColor', false, value);
+                    break;
+                case 'backColor':
+                    document.execCommand('backColor', false, value);
+                    break;
                 case 'link':
                     const url = prompt('Enter URL:');
                     if (url) document.execCommand('createLink', false, url);
@@ -751,6 +851,13 @@
                 case 'image':
                     const imgUrl = prompt('Enter image URL:');
                     if (imgUrl) document.execCommand('insertImage', false, imgUrl);
+                    break;
+                case 'code':
+                    document.execCommand('formatBlock', false, 'pre');
+                    break;
+                case 'removeFormat':
+                    document.execCommand('removeFormat');
+                    document.execCommand('formatBlock', false, 'p');
                     break;
             }
         }

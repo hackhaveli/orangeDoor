@@ -85,7 +85,19 @@
     "cta": {
       "title": "Let's Build Something Lasting",
       "paragraph1": "We believe real estate investing should be transparent, collaborative, and rewarding for everyone involved. Whether you are new to passive investing or already expanding your portfolio, we invite you to learn more about our projects and how we work with investors.",
-      "paragraph2": "Join our investor list or schedule a call to start the conversation about upcoming opportunities."
+      "paragraph2": "Join our investor list or schedule a call to start the conversation about upcoming opportunities.",
+      "buttons": [
+        {
+          "text": "Join Our Investor List",
+          "href": "#contact",
+          "type": "primary"
+        },
+        {
+          "text": "Schedule a Call",
+          "href": "https://link.orangedoorinvestmentgroup.com/widget/booking/zWhipZrTkrBoIlzY8i8G",
+          "type": "secondary"
+        }
+      ]
     },
     "partners": [
       {
@@ -207,12 +219,14 @@
         "description": "General Partners handle operations; Limited Partners contribute capital and earn passive income."
       }
     ],
-    "downloadGuide": {
-      "title": "Real Assets. Real Returns.",
-      "subtitle": "How Commercial Real Estate Grows and Protects Wealth",
-      "buttonText": "Download Free Guide",
-      "fileUrl": "https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
-    },
+    "downloadGuides": [
+      {
+        "title": "Real Assets. Real Returns.",
+        "subtitle": "How Commercial Real Estate Grows and Protects Wealth",
+        "buttonText": "Download Free Guide",
+        "fileUrl": "https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
+      }
+    ],
     "blog": {
       "title": "Latest Insights",
       "posts": [

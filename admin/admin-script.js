@@ -461,6 +461,36 @@ function renderAbout(data) {
                 <label>Paragraph 2</label>
                 <textarea id="ctaParagraph2" rows="3">${data.cta?.paragraph2 || ''}</textarea>
             </div>
+            
+            <h3 style="margin-top: 20px;">CTA Buttons</h3>
+            <div id="ctaButtons" class="dynamic-items">
+                ${(data.cta?.buttons || []).map((btn, i) => `
+                    <div class="dynamic-item">
+                        <div class="item-header">
+                            <div class="item-number">${i + 1}</div>
+                            <button class="btn-remove" onclick="removeCtaButton(${i})">Remove</button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Button Text</label>
+                                <input type="text" class="ctaBtnText" value="${btn.text}">
+                            </div>
+                            <div class="form-field">
+                                <label>Button URL</label>
+                                <input type="text" class="ctaBtnHref" value="${btn.href}">
+                            </div>
+                            <div class="form-field">
+                                <label>Button Type</label>
+                                <select class="ctaBtnType">
+                                    <option value="primary" ${btn.type === 'primary' ? 'selected' : ''}>Primary (Orange)</option>
+                                    <option value="secondary" ${btn.type === 'secondary' ? 'selected' : ''}>Secondary (Outline)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <button class="btn-add" onclick="addCtaButton()">+ Add CTA Button</button>
         </div>
 
         <div class="form-section">
@@ -642,28 +672,40 @@ function renderResources(data) {
             <button class="btn-add" onclick="addResourceItem()">+ Add Resource</button>
         </div>
 
+
         <div class="form-section">
-            <h2>Download Guide</h2>
-            <div class="form-row">
-                <div class="form-field">
-                    <label>Guide Title</label>
-                    <input type="text" id="guideTitle" value="${data.downloadGuide?.title || ''}">
-                </div>
-                <div class="form-field">
-                    <label>Guide Subtitle</label>
-                    <input type="text" id="guideSubtitle" value="${data.downloadGuide?.subtitle || ''}">
-                </div>
+            <h2>Downloadable Guides</h2>
+            <div id="downloadGuides" class="dynamic-items">
+                ${(data.downloadGuides || []).map((guide, i) => `
+                    <div class="dynamic-item">
+                        <div class="item-header">
+                            <div class="item-number">${i + 1}</div>
+                            <button class="btn-remove" onclick="removeDownloadGuide(${i})">Remove</button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Guide Title</label>
+                                <input type="text" class="guideTitle" value="${guide.title}">
+                            </div>
+                            <div class="form-field">
+                                <label>Guide Subtitle</label>
+                                <input type="text" class="guideSubtitle" value="${guide.subtitle}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Button Text</label>
+                                <input type="text" class="guideButtonText" value="${guide.buttonText}">
+                            </div>
+                            <div class="form-field">
+                                <label>File URL</label>
+                                <input type="url" class="guideFileUrl" value="${guide.fileUrl}">
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
             </div>
-            <div class="form-row">
-                <div class="form-field">
-                    <label>Button Text</label>
-                    <input type="text" id="guideButtonText" value="${data.downloadGuide?.buttonText || ''}">
-                </div>
-                <div class="form-field">
-                    <label>File URL</label>
-                    <input type="url" id="guideFileUrl" value="${data.downloadGuide?.fileUrl || ''}">
-                </div>
-            </div>
+            <button class="btn-add" onclick="addDownloadGuide()">+ Add Download Guide</button>
         </div>
 
         <div class="form-section">
@@ -819,7 +861,12 @@ function collectAboutData() {
         cta: {
             title: document.getElementById('ctaTitle').value,
             paragraph1: document.getElementById('ctaParagraph1').value,
-            paragraph2: document.getElementById('ctaParagraph2').value
+            paragraph2: document.getElementById('ctaParagraph2').value,
+            buttons: Array.from(document.querySelectorAll('.ctaBtnText')).map((el, i) => ({
+                text: el.value,
+                href: document.querySelectorAll('.ctaBtnHref')[i].value,
+                type: document.querySelectorAll('.ctaBtnType')[i].value
+            }))
         },
         partners: Array.from(document.querySelectorAll('.partnerName')).map((el, i) => ({
             name: el.value,
@@ -868,12 +915,12 @@ function collectResourcesData() {
             title: el.value,
             description: document.querySelectorAll('.resourceDesc')[i].value
         })),
-        downloadGuide: {
-            title: document.getElementById('guideTitle').value,
-            subtitle: document.getElementById('guideSubtitle').value,
-            buttonText: document.getElementById('guideButtonText').value,
-            fileUrl: document.getElementById('guideFileUrl').value
-        },
+        downloadGuides: Array.from(document.querySelectorAll('.guideTitle')).map((el, i) => ({
+            title: el.value,
+            subtitle: document.querySelectorAll('.guideSubtitle')[i].value,
+            buttonText: document.querySelectorAll('.guideButtonText')[i].value,
+            fileUrl: document.querySelectorAll('.guideFileUrl')[i].value
+        })),
         blog: {
             title: document.getElementById('blogTitle').value,
             posts: Array.from(document.querySelectorAll('.blogPostTitle')).map((el, i) => ({
@@ -982,6 +1029,24 @@ function addPartner() {
     enableSave();
 }
 
+function removeCtaButton(index) {
+    const data = contentData.about;
+    data.cta = data.cta || {};
+    data.cta.buttons = data.cta.buttons || [];
+    data.cta.buttons.splice(index, 1);
+    renderAbout(data);
+    enableSave();
+}
+
+function addCtaButton() {
+    const data = contentData.about;
+    data.cta = data.cta || {};
+    data.cta.buttons = data.cta.buttons || [];
+    data.cta.buttons.push({ text: '', href: '#contact', type: 'primary' });
+    renderAbout(data);
+    enableSave();
+}
+
 function removeFocusItem(index) {
     const data = contentData.focus;
     data.items.splice(index, 1);
@@ -1039,6 +1104,22 @@ function addResourceItem() {
     const data = contentData.resources;
     data.items = data.items || [];
     data.items.push({ title: '', description: '' });
+    renderResources(data);
+    enableSave();
+}
+
+function removeDownloadGuide(index) {
+    const data = contentData.resources;
+    data.downloadGuides = data.downloadGuides || [];
+    data.downloadGuides.splice(index, 1);
+    renderResources(data);
+    enableSave();
+}
+
+function addDownloadGuide() {
+    const data = contentData.resources;
+    data.downloadGuides = data.downloadGuides || [];
+    data.downloadGuides.push({ title: '', subtitle: '', buttonText: 'Download Free Guide', fileUrl: '' });
     renderResources(data);
     enableSave();
 }

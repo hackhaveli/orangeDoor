@@ -293,12 +293,14 @@ const initializeContent = async () => {
                         { title: 'How Preferred Returns Work', description: 'Preferred returns give investors priority on returns up to a stated annual rate before profits are shared.' },
                         { title: 'Understanding GP and LP Roles', description: 'General Partners handle operations; Limited Partners contribute capital and earn passive income.' }
                     ],
-                    downloadGuide: {
-                        title: 'Real Assets. Real Returns.',
-                        subtitle: 'How Commercial Real Estate Grows and Protects Wealth',
-                        buttonText: 'Download Free Guide',
-                        fileUrl: 'https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf'
-                    },
+                    downloadGuides: [
+                        {
+                            title: 'Real Assets. Real Returns.',
+                            subtitle: 'How Commercial Real Estate Grows and Protects Wealth',
+                            buttonText: 'Download Free Guide',
+                            fileUrl: 'https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf'
+                        }
+                    ],
                     blog: {
                         title: 'Latest Insights',
                         posts: [
