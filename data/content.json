@@ -26,6 +26,10 @@
       {
         "text": "Contact",
         "href": "#contact"
+      },
+      {
+        "text": "Faq",
+        "href": "#FAQ"
       }
     ]
   },
@@ -223,6 +227,12 @@
       {
         "title": "Real Assets. Real Returns.",
         "subtitle": "How Commercial Real Estate Grows and Protects Wealth",
+        "buttonText": "Download Free Guide",
+        "fileUrl": "https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
+      },
+      {
+        "title": "test",
+        "subtitle": "yesy",
         "buttonText": "Download Free Guide",
         "fileUrl": "https://storage.googleapis.com/msgsndr/Out59Sg1pInehCQh9Rc8/media/68e691bf1d56c3e7a2dfe831.pdf"
       }

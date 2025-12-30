@@ -27,7 +27,7 @@ async function loadDynamicContent() {
             const navMenu = document.querySelector('.nav-menu');
             if (navMenu && data.navbar.links) {
                 navMenu.innerHTML = data.navbar.links.map(link =>
-                    `<a href="${link.href}">${link.text}</a>`
+                    `<li><label for="menu-checkbox"><a href="${link.href}">${link.text}</a></label></li>`
                 ).join('');
             }
         }
@@ -184,25 +184,19 @@ async function loadDynamicContent() {
                 `).join('');
             }
 
-            // Update downloadable guides
-            if (data.resources.downloadGuides && data.resources.downloadGuides.length > 0) {
-                const guidesContainer = document.querySelector('.download-guides-container');
-                if (guidesContainer) {
-                    guidesContainer.innerHTML = data.resources.downloadGuides.map(guide => `
-                        <div class="download-guide">
-                            <h3>${guide.title}</h3>
-                            <p>${guide.subtitle}</p>
-                            <a href="${guide.fileUrl}" class="btn btn-primary" target="_blank">${guide.buttonText}</a>
-                        </div>
-                    `).join('');
-                }
-            } else if (data.resources.downloadGuide) {
-                // Fallback for old single guide format
-                updateText('.download-guide h3', data.resources.downloadGuide.title);
-                updateText('.download-guide p', data.resources.downloadGuide.subtitle);
-                updateText('#downloadGuide', data.resources.downloadGuide.buttonText);
-                updateAttr('#downloadGuide', 'href', data.resources.downloadGuide.fileUrl);
+            // Update downloadable guides - Replace entire container if guides exist
+            const guidesContainer = document.querySelector('.download-guides-container');
+            if (guidesContainer && data.resources.downloadGuides && data.resources.downloadGuides.length > 0) {
+                // Replace with dynamic guides from admin panel
+                guidesContainer.innerHTML = data.resources.downloadGuides.map(guide => `
+                    <div class="download-guide">
+                        <h3>${guide.title || 'Download Our Guide'}</h3>
+                        <p>${guide.subtitle || ''}</p>
+                        <a href="${guide.fileUrl}" class="btn btn-primary"target="_blank" download>${guide.buttonText || 'Download Free Guide'}</a>
+                    </div>
+                `).join('');
             }
+            // Otherwise keep the static fallback guide that's already in the HTML
 
             // Load blog posts from blog API
             try {
