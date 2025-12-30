@@ -102,7 +102,7 @@ async function loadDynamicContent() {
                             ctaContainer.appendChild(buttonsContainer);
                         }
                         buttonsContainer.innerHTML = data.about.cta.buttons.map(btn =>
-                            `<a href="${btn.href}" class="btn ${btn.type === 'primary' ? 'btn-primary' : 'btn-secondary'}">${btn.text}</a>`
+                            `<a href="${btn.href}" class="btn ${btn.type === 'primary' ? 'btn-primary' : 'btn-secondary-light'}">${btn.text}</a>`
                         ).join('');
                     }
                 }

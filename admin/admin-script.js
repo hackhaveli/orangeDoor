@@ -240,9 +240,10 @@ function renderSection(section) {
 }
 
 function attachChangeListeners() {
-    const inputs = contentBody.querySelectorAll('input, textarea');
+    const inputs = contentBody.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
         input.addEventListener('input', enableSave);
+        input.addEventListener('change', enableSave);
     });
 }
 
