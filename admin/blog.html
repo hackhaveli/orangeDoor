@@ -342,19 +342,95 @@
         }
 
         .content-editor {
-            min-height: 300px;
-            padding: 20px;
+            min-height: 400px;
+            padding: 24px;
             border: 1px solid var(--border);
             border-radius: 0 0 8px 8px;
-            background: var(--card);
-            color: var(--text);
-            font-size: 15px;
-            line-height: 1.8;
+            background: #1a1a2e;
+            color: #e1e1e1;
+            font-size: 17px;
+            line-height: 1.9;
         }
 
         .content-editor:focus {
             outline: none;
             border-color: var(--primary);
+        }
+
+        /* Editor Heading Styles - WYSIWYG Preview */
+        .content-editor h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 24px 0 16px;
+            color: #fff;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+
+        .content-editor h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 20px 0 14px;
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .content-editor h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 18px 0 12px;
+            color: var(--primary);
+        }
+
+        .content-editor h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 16px 0 10px;
+            color: var(--teal);
+        }
+
+        .content-editor p {
+            margin-bottom: 16px;
+        }
+
+        .content-editor ul,
+        .content-editor ol {
+            margin: 16px 0;
+            padding-left: 32px;
+        }
+
+        .content-editor li {
+            margin-bottom: 8px;
+        }
+
+        .content-editor blockquote {
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            margin: 20px 0;
+            background: rgba(246, 168, 109, 0.1);
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .content-editor pre {
+            background: #0d0d14;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+        }
+
+        .content-editor a {
+            color: var(--teal);
+            text-decoration: underline;
+        }
+
+        .content-editor img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 16px 0;
         }
 
         /* Color Picker */
@@ -579,6 +655,27 @@
                                 }</button>
                             <button type="button" class="editor-btn" onclick="formatText('removeFormat')"
                                 title="Clear Formatting">🧹</button>
+
+                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('paragraph')"
+                                title="New Paragraph">¶ Para</button>
+                            <button type="button" class="editor-btn" onclick="formatText('lineBreak')"
+                                title="Insert Line Break">↵ Break</button>
+                            <button type="button" class="editor-btn" onclick="formatText('hr')"
+                                title="Horizontal Line">— Line</button>
+
+                            <select class="editor-btn"
+                                onchange="formatText('fontSize', this.value); this.selectedIndex = 0;"
+                                style="padding: 8px; cursor: pointer;">
+                                <option value="">Font Size</option>
+                                <option value="1">Small</option>
+                                <option value="3">Normal</option>
+                                <option value="4">Medium</option>
+                                <option value="5">Large</option>
+                                <option value="6">X-Large</option>
+                                <option value="7">XX-Large</option>
+                            </select>
                         </div>
                         <div class="content-editor" id="postContent" contenteditable="true"></div>
                     </div>
@@ -683,23 +780,55 @@
 
         function editPost(id) {
             const post = posts.find(p => p.id === id);
-            if (!post) return;
+            if (!post) {
+                showToast('Post not found', true);
+                return;
+            }
 
             editingPostId = id;
-            document.getElementById('modalTitle').textContent = 'Edit Post';
-            document.getElementById('postId').value = id;
-            document.getElementById('postTitle').value = post.title || '';
-            document.getElementById('postCategory').value = post.category || '';
-            document.getElementById('postReadTime').value = post.readTime || '';
-            document.getElementById('postImage').value = post.image || '';
-            document.getElementById('postExcerpt').value = post.excerpt || '';
-            document.getElementById('postContent').innerHTML = post.content || '';
-            document.getElementById('postAuthor').value = post.author || '';
-            document.getElementById('postAuthorImage').value = post.authorImage || '';
-            document.getElementById('postAuthorBio').value = post.authorBio || '';
 
-            previewImage();
+            // Store the content safely before manipulating DOM
+            const savedContent = post.content || '';
+            const savedTitle = post.title || '';
+            const savedCategory = post.category || '';
+            const savedReadTime = post.readTime || '';
+            const savedImage = post.image || '';
+            const savedExcerpt = post.excerpt || '';
+            const savedAuthor = post.author || '';
+            const savedAuthorImage = post.authorImage || '';
+            const savedAuthorBio = post.authorBio || '';
+
+            document.getElementById('modalTitle').textContent = 'Edit Post';
             document.getElementById('blogModal').classList.add('show');
+
+            // Use setTimeout to ensure modal is fully rendered before populating
+            setTimeout(() => {
+                document.getElementById('postId').value = id;
+                document.getElementById('postTitle').value = savedTitle;
+                document.getElementById('postCategory').value = savedCategory;
+                document.getElementById('postReadTime').value = savedReadTime;
+                document.getElementById('postImage').value = savedImage;
+                document.getElementById('postExcerpt').value = savedExcerpt;
+                document.getElementById('postAuthor').value = savedAuthor;
+                document.getElementById('postAuthorImage').value = savedAuthorImage;
+                document.getElementById('postAuthorBio').value = savedAuthorBio;
+
+                // Load content into editor safely
+                const contentEditor = document.getElementById('postContent');
+                if (contentEditor) {
+                    contentEditor.innerHTML = savedContent;
+
+                    // Double-check content was loaded
+                    if (contentEditor.innerHTML !== savedContent && savedContent) {
+                        console.log('Content reload needed');
+                        setTimeout(() => {
+                            contentEditor.innerHTML = savedContent;
+                        }, 100);
+                    }
+                }
+
+                previewImage();
+            }, 50);
         }
 
         async function savePost() {
@@ -858,6 +987,20 @@
                 case 'removeFormat':
                     document.execCommand('removeFormat');
                     document.execCommand('formatBlock', false, 'p');
+                    break;
+                case 'paragraph':
+                    document.execCommand('formatBlock', false, 'p');
+                    break;
+                case 'lineBreak':
+                    document.execCommand('insertHTML', false, '<br><br>');
+                    break;
+                case 'hr':
+                    document.execCommand('insertHTML', false, '<hr style="border: none; border-top: 2px solid #ddd; margin: 24px 0;">');
+                    break;
+                case 'fontSize':
+                    if (value) {
+                        document.execCommand('fontSize', false, value);
+                    }
                     break;
             }
         }
