@@ -9,7 +9,10 @@ const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+// 🔁 301 Redirect for old QR code URL
+app.get('/2026', (req, res) => {
+    return res.redirect(301, 'https://2026.orangedoorinvestmentgroup.com');
+});
 // Middleware
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
