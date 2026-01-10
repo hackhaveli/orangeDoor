@@ -357,6 +357,116 @@
             border-color: var(--primary);
         }
 
+        /* Toolbar Divider */
+        .toolbar-divider {
+            border-left: 1px solid var(--border);
+            height: 30px;
+            margin: 0 8px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Editor Container */
+        .editor-container {
+            position: relative;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0;
+        }
+
+        .content-editor {
+            min-height: 400px;
+            padding: 24px;
+            border: none;
+            border-radius: 0;
+            background: #1a1a2e;
+            color: #e1e1e1;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .content-editor:empty:before {
+            content: attr(placeholder);
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Content Preview */
+        .content-preview {
+            min-height: 400px;
+            padding: 24px;
+            background: #fff;
+            color: #333;
+            font-size: 17px;
+            line-height: 1.9;
+            overflow-y: auto;
+        }
+
+        .content-preview h1,
+        .content-preview h2,
+        .content-preview h3,
+        .content-preview h4,
+        .content-preview h5,
+        .content-preview h6 {
+            color: #333;
+            margin: 24px 0 16px;
+        }
+
+        .content-preview h1 {
+            font-size: 32px;
+            border-bottom: 2px solid #F6A86D;
+            padding-bottom: 8px;
+        }
+
+        .content-preview h2 {
+            font-size: 28px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 6px;
+        }
+
+        .content-preview h3 {
+            font-size: 24px;
+        }
+
+        .content-preview h4 {
+            font-size: 20px;
+        }
+
+        .content-preview h5 {
+            font-size: 18px;
+        }
+
+        .content-preview h6 {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .content-preview p {
+            margin-bottom: 16px;
+        }
+
+        .content-preview blockquote {
+            border-left: 4px solid #F6A86D;
+            padding: 16px 20px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Editor Footer */
+        .editor-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         /* Editor Heading Styles - WYSIWYG Preview */
         .content-editor h1 {
             font-size: 32px;
@@ -584,24 +694,37 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Excerpt (Short description for cards)</label>
-                        <textarea id="postExcerpt" rows="3"
-                            placeholder="Brief description that appears on blog cards..."></textarea>
+                        <label>Excerpt * (Short description for cards)</label>
+                        <textarea id="postExcerpt" rows="3" maxlength="300"
+                            placeholder="Brief description that appears on blog cards..."
+                            oninput="updateExcerptCount()"></textarea>
+                        <div class="editor-footer" style="border-top: none; margin-top: 4px;">
+                            <span id="excerptCount">0/300 characters</span>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Content *</label>
+                        <label>Content * <button type="button" class="editor-btn" onclick="togglePreview()"
+                                style="float: right; font-size: 12px;" id="previewBtn">👁 Preview</button></label>
+
+                        <!-- Row 1: Text Formatting -->
                         <div class="editor-toolbar">
                             <button type="button" class="editor-btn" onclick="formatText('bold')"
-                                title="Bold"><b>B</b></button>
+                                title="Bold (Ctrl+B)"><b>B</b></button>
                             <button type="button" class="editor-btn" onclick="formatText('italic')"
-                                title="Italic"><i>I</i></button>
+                                title="Italic (Ctrl+I)"><i>I</i></button>
                             <button type="button" class="editor-btn" onclick="formatText('underline')"
-                                title="Underline"><u>U</u></button>
+                                title="Underline (Ctrl+U)"><u>U</u></button>
                             <button type="button" class="editor-btn" onclick="formatText('strikethrough')"
                                 title="Strikethrough"><s>S</s></button>
+                            <button type="button" class="editor-btn" onclick="formatText('superscript')"
+                                title="Superscript">X<sup>2</sup></button>
+                            <button type="button" class="editor-btn" onclick="formatText('subscript')"
+                                title="Subscript">X<sub>2</sub></button>
+                            <button type="button" class="editor-btn" onclick="formatText('highlight')"
+                                title="Highlight Text" style="background: #ffeb3b; color: #000;">🖍</button>
 
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+                            <span class="toolbar-divider"></span>
 
                             <button type="button" class="editor-btn" onclick="formatText('h1')"
                                 title="Heading 1">H1</button>
@@ -611,73 +734,122 @@
                                 title="Heading 3">H3</button>
                             <button type="button" class="editor-btn" onclick="formatText('h4')"
                                 title="Heading 4">H4</button>
+                            <button type="button" class="editor-btn" onclick="formatText('h5')"
+                                title="Heading 5">H5</button>
+                            <button type="button" class="editor-btn" onclick="formatText('h6')"
+                                title="Heading 6">H6</button>
+                            <button type="button" class="editor-btn" onclick="formatText('paragraph')"
+                                title="Normal Paragraph">P</button>
+                        </div>
 
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
-
+                        <!-- Row 2: Lists, Alignment, Spacing -->
+                        <div class="editor-toolbar" style="border-top: none; border-radius: 0;">
                             <button type="button" class="editor-btn" onclick="formatText('ul')" title="Bullet List">•
                                 List</button>
                             <button type="button" class="editor-btn" onclick="formatText('ol')" title="Numbered List">1.
                                 List</button>
+                            <button type="button" class="editor-btn" onclick="formatText('indent')"
+                                title="Increase Indent">→|</button>
+                            <button type="button" class="editor-btn" onclick="formatText('outdent')"
+                                title="Decrease Indent">|←</button>
                             <button type="button" class="editor-btn" onclick="formatText('quote')"
-                                title="Quote">Quote</button>
+                                title="Blockquote">❝</button>
 
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+                            <span class="toolbar-divider"></span>
 
                             <button type="button" class="editor-btn" onclick="formatText('left')"
-                                title="Align Left">⬅️</button>
+                                title="Align Left">⬅</button>
                             <button type="button" class="editor-btn" onclick="formatText('center')"
-                                title="Align Center">↔️</button>
+                                title="Align Center">↔</button>
                             <button type="button" class="editor-btn" onclick="formatText('right')"
-                                title="Align Right">➡️</button>
+                                title="Align Right">➡</button>
                             <button type="button" class="editor-btn" onclick="formatText('justify')"
-                                title="Justify">⬌</button>
+                                title="Justify">☰</button>
 
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
+                            <span class="toolbar-divider"></span>
 
-                            <div style="display: inline-flex; align-items: center; gap: 5px;">
-                                <label for="textColor" style="font-size: 12px; margin: 0;">Text:</label>
-                                <input type="color" id="textColor" class="color-picker"
-                                    onchange="formatText('foreColor', this.value)" title="Text Color">
-                            </div>
-                            <div style="display: inline-flex; align-items: center; gap: 5px;">
-                                <label for="bgColor" style="font-size: 12px; margin: 0;">BG:</label>
-                                <input type="color" id="bgColor" class="color-picker"
-                                    onchange="formatText('backColor', this.value)" title="Background Color">
-                            </div>
-
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
-
-                            <button type="button" class="editor-btn" onclick="formatText('link')" title="Insert Link">🔗
-                                Link</button>
-                            <button type="button" class="editor-btn" onclick="formatText('image')"
-                                title="Insert Image">🖼️ Image</button>
-                            <button type="button" class="editor-btn" onclick="formatText('code')" title="Code">{
-                                }</button>
-                            <button type="button" class="editor-btn" onclick="formatText('removeFormat')"
-                                title="Clear Formatting">🧹</button>
-
-                            <span style="border-left: 1px solid var(--border); height: 30px; margin: 0 5px;"></span>
-
-                            <button type="button" class="editor-btn" onclick="formatText('paragraph')"
-                                title="New Paragraph">¶ Para</button>
-                            <button type="button" class="editor-btn" onclick="formatText('lineBreak')"
-                                title="Insert Line Break">↵ Break</button>
-                            <button type="button" class="editor-btn" onclick="formatText('hr')"
-                                title="Horizontal Line">— Line</button>
+                            <select class="editor-btn"
+                                onchange="formatText('lineHeight', this.value); this.selectedIndex = 0;"
+                                style="padding: 8px; cursor: pointer;" title="Line Spacing">
+                                <option value="">↕ Spacing</option>
+                                <option value="1">Single</option>
+                                <option value="1.5">1.5 Lines</option>
+                                <option value="2">Double</option>
+                                <option value="2.5">2.5 Lines</option>
+                                <option value="3">Triple</option>
+                            </select>
 
                             <select class="editor-btn"
                                 onchange="formatText('fontSize', this.value); this.selectedIndex = 0;"
-                                style="padding: 8px; cursor: pointer;">
-                                <option value="">Font Size</option>
-                                <option value="1">Small</option>
+                                style="padding: 8px; cursor: pointer;" title="Font Size">
+                                <option value="">📐 Size</option>
+                                <option value="1">Tiny</option>
+                                <option value="2">Small</option>
                                 <option value="3">Normal</option>
                                 <option value="4">Medium</option>
                                 <option value="5">Large</option>
                                 <option value="6">X-Large</option>
-                                <option value="7">XX-Large</option>
+                                <option value="7">Huge</option>
                             </select>
                         </div>
-                        <div class="content-editor" id="postContent" contenteditable="true"></div>
+
+                        <!-- Row 3: Colors, Links, Media, Extras -->
+                        <div class="editor-toolbar" style="border-top: none; border-radius: 0 0 8px 8px;">
+                            <div style="display: inline-flex; align-items: center; gap: 5px;">
+                                <label for="textColor" style="font-size: 12px; margin: 0;">🎨 Text:</label>
+                                <input type="color" id="textColor" class="color-picker" value="#333333"
+                                    onchange="formatText('foreColor', this.value)" title="Text Color">
+                            </div>
+                            <div style="display: inline-flex; align-items: center; gap: 5px;">
+                                <label for="bgColor" style="font-size: 12px; margin: 0;">BG:</label>
+                                <input type="color" id="bgColor" class="color-picker" value="#ffffff"
+                                    onchange="formatText('backColor', this.value)" title="Background Color">
+                            </div>
+
+                            <span class="toolbar-divider"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('link')" title="Insert Link">🔗
+                                Link</button>
+                            <button type="button" class="editor-btn" onclick="formatText('unlink')"
+                                title="Remove Link">🔓</button>
+                            <button type="button" class="editor-btn" onclick="formatText('image')"
+                                title="Insert Image">🖼 Image</button>
+                            <button type="button" class="editor-btn" onclick="formatText('video')"
+                                title="Embed Video">🎬 Video</button>
+                            <button type="button" class="editor-btn" onclick="formatText('table')"
+                                title="Insert Table">📊 Table</button>
+
+                            <span class="toolbar-divider"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('code')" title="Code Block">{
+                                }</button>
+                            <button type="button" class="editor-btn" onclick="formatText('hr')"
+                                title="Horizontal Line">―</button>
+                            <button type="button" class="editor-btn" onclick="formatText('lineBreak')"
+                                title="Line Break (Shift+Enter)">↵</button>
+                            <button type="button" class="editor-btn" onclick="formatText('spacer')"
+                                title="Add Spacer Block">⬜</button>
+
+                            <span class="toolbar-divider"></span>
+
+                            <button type="button" class="editor-btn" onclick="formatText('undo')"
+                                title="Undo">↩</button>
+                            <button type="button" class="editor-btn" onclick="formatText('redo')"
+                                title="Redo">↪</button>
+                            <button type="button" class="editor-btn" onclick="formatText('removeFormat')"
+                                title="Clear Formatting">🧹</button>
+                        </div>
+
+                        <div class="editor-container">
+                            <div class="content-editor" id="postContent" contenteditable="true"
+                                placeholder="Write your blog post content here. You can use HTML or Markdown formatting.">
+                            </div>
+                            <div class="content-preview" id="postPreview" style="display: none;"></div>
+                        </div>
+                        <div class="editor-footer">
+                            <span id="charCount">0 characters</span>
+                            <span id="wordCount">0 words</span>
+                        </div>
                     </div>
 
                     <div class="form-row">
@@ -934,6 +1106,15 @@
                 case 'strikethrough':
                     document.execCommand('strikeThrough');
                     break;
+                case 'superscript':
+                    document.execCommand('superscript');
+                    break;
+                case 'subscript':
+                    document.execCommand('subscript');
+                    break;
+                case 'highlight':
+                    document.execCommand('backColor', false, '#ffeb3b');
+                    break;
                 case 'h1':
                     document.execCommand('formatBlock', false, 'h1');
                     break;
@@ -946,11 +1127,23 @@
                 case 'h4':
                     document.execCommand('formatBlock', false, 'h4');
                     break;
+                case 'h5':
+                    document.execCommand('formatBlock', false, 'h5');
+                    break;
+                case 'h6':
+                    document.execCommand('formatBlock', false, 'h6');
+                    break;
                 case 'ul':
                     document.execCommand('insertUnorderedList');
                     break;
                 case 'ol':
                     document.execCommand('insertOrderedList');
+                    break;
+                case 'indent':
+                    document.execCommand('indent');
+                    break;
+                case 'outdent':
+                    document.execCommand('outdent');
                     break;
                 case 'quote':
                     document.execCommand('formatBlock', false, 'blockquote');
@@ -973,13 +1166,63 @@
                 case 'backColor':
                     document.execCommand('backColor', false, value);
                     break;
+                case 'lineHeight':
+                    if (value) {
+                        const selection = window.getSelection();
+                        if (selection.rangeCount > 0) {
+                            const range = selection.getRangeAt(0);
+                            let container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) container = container.parentNode;
+                            container.style.lineHeight = value;
+                        }
+                    }
+                    break;
                 case 'link':
                     const url = prompt('Enter URL:');
                     if (url) document.execCommand('createLink', false, url);
                     break;
+                case 'unlink':
+                    document.execCommand('unlink');
+                    break;
                 case 'image':
                     const imgUrl = prompt('Enter image URL:');
                     if (imgUrl) document.execCommand('insertImage', false, imgUrl);
+                    break;
+                case 'video':
+                    const videoUrl = prompt('Enter YouTube or Vimeo URL:');
+                    if (videoUrl) {
+                        let embedHtml = '';
+                        if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                            const videoId = videoUrl.includes('youtu.be')
+                                ? videoUrl.split('/').pop()
+                                : new URLSearchParams(new URL(videoUrl).search).get('v');
+                            embedHtml = `<div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0;"><iframe src="https://www.youtube.com/embed/${videoId}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe></div>`;
+                        } else if (videoUrl.includes('vimeo.com')) {
+                            const videoId = videoUrl.split('/').pop();
+                            embedHtml = `<div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0;"><iframe src="https://player.vimeo.com/video/${videoId}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe></div>`;
+                        } else {
+                            embedHtml = `<video src="${videoUrl}" controls style="max-width: 100%; margin: 20px 0;"></video>`;
+                        }
+                        document.execCommand('insertHTML', false, embedHtml);
+                    }
+                    break;
+                case 'table':
+                    const rows = prompt('Number of rows:', '3');
+                    const cols = prompt('Number of columns:', '3');
+                    if (rows && cols) {
+                        let tableHtml = '<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">';
+                        for (let i = 0; i < parseInt(rows); i++) {
+                            tableHtml += '<tr>';
+                            for (let j = 0; j < parseInt(cols); j++) {
+                                const cellType = i === 0 ? 'th' : 'td';
+                                const bgColor = i === 0 ? 'background: #333; color: white;' : '';
+                                tableHtml += `<${cellType} style="border: 1px solid #ddd; padding: 12px; ${bgColor}">${i === 0 ? 'Header' : 'Cell'}</${cellType}>`;
+                            }
+                            tableHtml += '</tr>';
+                        }
+                        tableHtml += '</table>';
+                        document.execCommand('insertHTML', false, tableHtml);
+                    }
                     break;
                 case 'code':
                     document.execCommand('formatBlock', false, 'pre');
@@ -997,13 +1240,81 @@
                 case 'hr':
                     document.execCommand('insertHTML', false, '<hr style="border: none; border-top: 2px solid #ddd; margin: 24px 0;">');
                     break;
+                case 'spacer':
+                    document.execCommand('insertHTML', false, '<div style="height: 40px;"></div>');
+                    break;
+                case 'undo':
+                    document.execCommand('undo');
+                    break;
+                case 'redo':
+                    document.execCommand('redo');
+                    break;
                 case 'fontSize':
                     if (value) {
                         document.execCommand('fontSize', false, value);
                     }
                     break;
             }
+
+            updateCounts();
         }
+
+        // Toggle between editor and preview
+        let isPreviewMode = false;
+        function togglePreview() {
+            const editor = document.getElementById('postContent');
+            const preview = document.getElementById('postPreview');
+            const previewBtn = document.getElementById('previewBtn');
+
+            isPreviewMode = !isPreviewMode;
+
+            if (isPreviewMode) {
+                preview.innerHTML = editor.innerHTML;
+                editor.style.display = 'none';
+                preview.style.display = 'block';
+                previewBtn.innerHTML = '✏️ Edit';
+                previewBtn.style.background = 'var(--primary)';
+                previewBtn.style.color = '#000';
+            } else {
+                editor.style.display = 'block';
+                preview.style.display = 'none';
+                previewBtn.innerHTML = '👁 Preview';
+                previewBtn.style.background = '';
+                previewBtn.style.color = '';
+            }
+        }
+
+        // Update word and character counts for content editor
+        function updateCounts() {
+            const editor = document.getElementById('postContent');
+            const text = editor.innerText || '';
+            const charCount = text.length;
+            const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+
+            document.getElementById('charCount').textContent = `${charCount} characters`;
+            document.getElementById('wordCount').textContent = `${wordCount} words`;
+        }
+
+        // Update excerpt character count
+        function updateExcerptCount() {
+            const excerpt = document.getElementById('postExcerpt');
+            const count = excerpt.value.length;
+            document.getElementById('excerptCount').textContent = `${count}/300 characters`;
+        }
+
+        // Add event listener for content changes
+        document.addEventListener('DOMContentLoaded', function () {
+            const editor = document.getElementById('postContent');
+            if (editor) {
+                editor.addEventListener('input', updateCounts);
+                editor.addEventListener('keyup', updateCounts);
+            }
+
+            const excerpt = document.getElementById('postExcerpt');
+            if (excerpt) {
+                excerpt.addEventListener('input', updateExcerptCount);
+            }
+        });
 
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');

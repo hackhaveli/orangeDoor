@@ -25,7 +25,7 @@
       },
       {
         "text": "Blog",
-        "href": "#blog"
+        "href": "/blog.html"
       },
       {
         "text": "Contact",
@@ -267,6 +267,26 @@
   "footer": {
     "copyright": "© 2025 Orange Door Investment Group. All rights reserved.",
     "tagline": "Opening Doors to Smarter Real Estate Investments",
+    "socialLinks": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/OrangeDoorInvestmentGroup/",
+        "name": "Facebook",
+        "icon": ""
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/orange_door_investment_group/",
+        "name": "Instagram",
+        "icon": ""
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://www.linkedin.com/company/orange-door-investment-group/",
+        "name": "LinkedIn",
+        "icon": ""
+      }
+    ],
     "buttons": [
       {
         "text": "Join Our Investor List",

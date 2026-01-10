@@ -781,6 +781,52 @@ function renderFooter(data) {
         </div>
 
         <div class="form-section">
+            <h2>Social Links</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Add your social media links. They will appear in the footer.</p>
+            <div id="socialLinks" class="dynamic-items">
+                ${(data.socialLinks || []).map((social, i) => `
+                    <div class="dynamic-item">
+                        <div class="item-header">
+                            <div class="item-number">${i + 1}</div>
+                            <button class="btn-remove" onclick="removeSocialLink(${i})">Remove</button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Platform</label>
+                                <select class="socialPlatform">
+                                    <option value="facebook" ${social.platform === 'facebook' ? 'selected' : ''}>Facebook</option>
+                                    <option value="twitter" ${social.platform === 'twitter' ? 'selected' : ''}>Twitter / X</option>
+                                    <option value="instagram" ${social.platform === 'instagram' ? 'selected' : ''}>Instagram</option>
+                                    <option value="linkedin" ${social.platform === 'linkedin' ? 'selected' : ''}>LinkedIn</option>
+                                    <option value="youtube" ${social.platform === 'youtube' ? 'selected' : ''}>YouTube</option>
+                                    <option value="tiktok" ${social.platform === 'tiktok' ? 'selected' : ''}>TikTok</option>
+                                    <option value="pinterest" ${social.platform === 'pinterest' ? 'selected' : ''}>Pinterest</option>
+                                    <option value="email" ${social.platform === 'email' ? 'selected' : ''}>Email</option>
+                                    <option value="custom" ${social.platform === 'custom' ? 'selected' : ''}>Custom</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label>URL</label>
+                                <input type="url" class="socialUrl" value="${social.url || ''}" placeholder="https://...">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Display Name (optional)</label>
+                                <input type="text" class="socialName" value="${social.name || ''}" placeholder="e.g., Follow us">
+                            </div>
+                            <div class="form-field">
+                                <label>Custom Icon (emoji or URL, optional)</label>
+                                <input type="text" class="socialIcon" value="${social.icon || ''}" placeholder="📱 or https://...">
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <button class="btn-add" onclick="addSocialLink()">+ Add Social Link</button>
+        </div>
+
+        <div class="form-section">
             <h2>Footer Buttons</h2>
             <div id="footerButtons" class="dynamic-items">
                 ${(data.buttons || []).map((btn, i) => `
@@ -946,6 +992,12 @@ function collectFooterData() {
     return {
         copyright: document.getElementById('footerCopyright').value,
         tagline: document.getElementById('footerTagline').value,
+        socialLinks: Array.from(document.querySelectorAll('.socialPlatform')).map((el, i) => ({
+            platform: el.value,
+            url: document.querySelectorAll('.socialUrl')[i].value,
+            name: document.querySelectorAll('.socialName')[i].value,
+            icon: document.querySelectorAll('.socialIcon')[i].value
+        })),
         buttons: Array.from(document.querySelectorAll('.footerBtnText')).map((el, i) => ({
             text: el.value,
             href: document.querySelectorAll('.footerBtnHref')[i].value,
@@ -1151,6 +1203,22 @@ function addFooterButton() {
     const data = contentData.footer;
     data.buttons = data.buttons || [];
     data.buttons.push({ text: '', href: '#', type: 'primary' });
+    renderFooter(data);
+    enableSave();
+}
+
+function removeSocialLink(index) {
+    const data = contentData.footer;
+    data.socialLinks = data.socialLinks || [];
+    data.socialLinks.splice(index, 1);
+    renderFooter(data);
+    enableSave();
+}
+
+function addSocialLink() {
+    const data = contentData.footer;
+    data.socialLinks = data.socialLinks || [];
+    data.socialLinks.push({ platform: 'facebook', url: '', name: '', icon: '' });
     renderFooter(data);
     enableSave();
 }
